@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 # Choices Fields 
@@ -14,8 +15,7 @@ spend = (
 
 move_type =(
     ('1', 'Come and Go'),
-    ('2', 'Only Go')
-)
+    ('2', 'Only Go'))
 
 drive = (
     ('1', 'Yes'),
@@ -45,6 +45,7 @@ class MovementReason(models.Model):
 
 # Movement Pass Model
 class MovementPass(models.Model):
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
     _from = models.CharField(max_length=200, blank=False, null=True, verbose_name='From Where')
     _to = models.CharField(max_length=200, blank=False, null=True, verbose_name='To Where')
     traking_id = models.IntegerField(null=True)

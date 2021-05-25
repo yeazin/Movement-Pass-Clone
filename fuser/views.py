@@ -2,12 +2,24 @@ from django.shortcuts import render,redirect
 from .models import District, Subdistrict
 from django.views import View
 from .models import District,Subdistrict,MovementReason,MovementPass
+from sadmin.models import IDtype, Gender, PassUser
+# essential imports
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login,logout
+from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 
 # Register for Movement Pass
 class Register(View):
     def get(self,request,*args,**kwargs):
         return render(request,'fuser/register.html')
+    def post(self, request,*args,**kwargs):
+        pass
 
 # Login For  Movement Pass
 class LoginView(View):
