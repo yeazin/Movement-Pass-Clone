@@ -25,8 +25,8 @@ class PassUser(models.Model):
     date_of_birth = models.DateField(null=True, auto_now_add=False)
     district = models.ForeignKey(District, on_delete=models.DO_NOTHING, null=True)
     thana  = models.CharField(max_length=200, null=True, blank=True)
-    idnumber = models.ForeignKey(IDtype, on_delete=models.DO_NOTHING)
-    id_name = models.CharField(max_length=100, blank=False, null=True)
+    id_name = models.ForeignKey(IDtype, on_delete=models.DO_NOTHING, verbose_name='Id Name Type')
+    id_number = models.CharField(max_length=100, blank=False, null=True, verbose_name='Id Number')
     image = models.ImageField(upload_to = 'profile', null=True)
     is_admin = models.BooleanField(default=False)
 
