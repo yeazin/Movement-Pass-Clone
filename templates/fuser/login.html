@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Login | Movement Pass {% endblock %}
+
+{% block body %}
+<main id="main">
+    <section id="home" class="home" style="margin-top:50px">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="https://movementpass.police.gov.bd/assets/img/bd-police.png" class="mt-2 card-img-top mx-auto d-block" style="height: 100px; width: 100px; object-fit: contain; object-position: top" alt="logo">
+                    <h3 class="text-center mt-1">Log In</h3>
+                <div class="card-body" style="padding-top:0px;">
+                    <form method="POST" action="https://movementpass.police.gov.bd/login" id="login_form">
+                        <input type="hidden" name="_token" value="sxwigIN1F0BO0X53RGaBnsXOQ6OHNQWMjRUVm043">                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">+88</span>
+                                </div>
+                                <input type="text" name="mobile" value=""
+                                       class="form-control "
+                                       placeholder="015XX-XXX-XXX" required autocomplete="mobile" autofocus aria-label="mobile"
+                                       aria-describedby="basic-addon1">
+                                                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Date of Birth <span class="text-warning">(DDMMYY)</span></label>
+                                <input id="password"  placeholder="" type="password" class="form-control " name="password" required autocomplete="off">
+                                                            <small class="help-text text-muted">If the date is 01-02-1994 then write 01021994</small>
+
+                        </div>
+                        <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
+
+                        <div class="form-group">
+                            <!-- <div class="col-md-2 offset-md-2"> -->
+                                <div data-sitekey="6LeISasaAAAAAECSS_Us7sATWuTFlJggNqC4q30o" class="g-recaptcha"></div>
+                            <!-- </div> -->
+
+                            
+                        <small class="text-danger captcha_error" style="margin-top: 10px; margin-bottom: 10px;display:none">
+                                    <strong class="text-center">Verify Captcha to continue</strong>
+                                </small>
+                        </div>
+                        
+
+
+                        <div class="form-group mb-0">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-block btn-primary">
+                                    Log In                                </button>
+
+                                <a class="mt-2 btn btn-link" href="{% url 'register' %}"> If you don't have an account please register</a>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,276 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Apply | Movement Pass {% endblock %}
+
+{% block body %}
+
+<main id="main">
+    <section id="home" class="home" style="margin-top:50px">
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                                    <div class="card">
+                        <div class="card-header">Provide necessary information for movement pas</div>
+                        <div class="card-body">
+                            <form class="form-row" id="pass_form" action="" method="POST"
+                                  enctype="multipart/form-data">
+                                                                
+                                  <div class="form-group col-md-6">
+                                    <label for="from_destination">Location From <span class="text-danger">*</span></label>
+                                    <input type="text" value="" placeholder="Enter your location"
+                                           id="from_destination"
+                                           class="form-control "
+                                           name="_from" required>
+                                                                    </div>
+                                <div class="form-group col-md-6">
+                                    <label for="to_destination">Where to go <span class="text-danger">*</span></label>
+                                    <input type="text" value="" placeholder="Enter your location"
+                                           id="to_destination"
+                                           class="form-control "
+                                           name="_to" required>
+                                                                    </div>
+
+                
+                                <div class="form-group col-md-6">
+                                <label for="district">District of your destination <span class="text-danger">*</span></label>
+                                        <select required class="district form-control " id="district"
+                                        name="district" placeholder=" Enter Your District Name" required>
+                                            <option value=""> Enter Your District Name </option>
+                                            {% for d in district %}
+                                            <option value="">{{ d }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <small class="help-text text-muted">If you live in the city, select Metro;  For example: Dhaka Metro</small>
+                                
+                                                                </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="thana">Subdistrict at your destination<span
+                                        class="text-danger">*</span></label>
+                                        <input type="text" value="" placeholder="Subdistrict Name"
+                                        id="from_destination"
+                                        class="form-control "
+                                        name="subdistrict" required>
+                                                                 </div>
+                                           
+                                
+                                <div class="form-group col-md-6">
+                                <label for="pass_time">Please select a date and time for the Pass<span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                        </div>
+                                       <input type="text" required name="pass_time" id="pass_time" class="form-control" style="padding: .375rem .75rem;background:#fff" value="04-05-2021" autocomplete='off' readonly>
+                                        <div class="input-group-append">
+                                            <select  class="form-control editable" name="start_time" style="width: 100px;">
+                                                                                                <option >12:00</option>
+  
+                                                                                            </select>
+
+                                            <select  class="form-control" name="start_hour">
+                                                                                                <option value="AM" >AM</option>
+                                                <option value="PM" SELECTED>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>                    
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="duration">Set a time limit to stay out<span
+                                            class="text-danger">*</span></label>
+                                    <select  name="duration" id="duration"
+                                            class="form-control ">
+                                        <option value="" selected disabled>নির্বাচন করুন (Select)</option>
+                                                                                  {% for d in obj.time_spand.all %}
+                                                                                  <option value="">{{ d }}</option>
+                                                                                  {% endfor %}
+                                                                            </select>
+                                                                    </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <div id="tripDiv">                                                  
+                                        <label for="trip_type">Movement type<span
+                                                class="text-danger">*</span> &nbsp;&nbsp;</label>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="trip_type" id="trip_type2" value="2" checked>
+                                        <label class="form-check-label" for="trip_type2">Round Trip</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input"  type="radio" name="trip_type" id="trip_type1" value="1" >
+                                        <label class="form-check-label" for="trip_type1">One Way</label>
+                                        </div>
+                                    </div> 
+                                    <div id="need_vehicle" style="margin-top:10px;">
+                                        <label for="vehicle">Do you want to drive out?<span
+                                                class="text-danger">*</span> &nbsp;&nbsp;</label>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input"  type="radio" name="vehicle" id="vehicle_type1" value="1">
+                                        <label class="form-check-label" for="vehicle_type1">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="vehicle" id="vehicle_type2" value="0" >
+                                        <label class="form-check-label" for="vehicle_type2">No</label>
+                                        </div>  
+                                    </div>                              
+                                    <div id="ask_driver" style="display:none;margin-top:10px;">
+                                        <label for="self_drive">Will you drive yourself<span
+                                                class="text-danger">*</span> &nbsp;&nbsp;</label>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input"  type="radio" name="self_drive" id="self_drive_type1" value="1">
+                                        <label class="form-check-label" for="self_drive_type1">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input"  type="radio" name="self_drive" id="self_drive_type2" value="0" >
+                                        <label class="form-check-label" for="self_drive_type2">No</label>
+                                        </div>
+                                    </div>
+                                    
+                                </div>                                                           
+
+                                <div class="form-group col-md-6">
+                                    <label for="pass_reason">Reason for the Movement Pass<span
+                                            class="text-danger">*</span></label>
+                                    <select  class="form-control " id="pass_reason"
+                                            name="pass_reason">
+                                        <option value="">নির্বাচন করুন (Select a reason)</option>
+                                        <option
+                                            value="করোনা টিকা নেয়া (Take Covid Vaccine)" >
+                                            করোনা টিকা নেয়া (Take Covid Vaccine)
+                                        </option>
+                                        <option
+                                            value="করোনা টেস্ট (Covid Test)" >
+                                            করোনা টেস্ট (Covid Test)
+                                        </option>
+                                        <option
+                                            value="মুদি মালামাল কেনা কাটা (Grocery shopping)" >
+                                            মুদি মালামাল কেনা কাটা (Grocery shopping)
+                                        </option>
+                                        <option
+                                            value="কাঁচা বাজার (Kitchen Market)" >
+                                            কাঁচা বাজার (Kitchen Market)
+                                        </option>
+                                        <option
+                                            value="ঔষধ ক্রয় (Medicine purchase)" >
+                                            ঔষধ ক্রয় (Medicine purchase)
+                                        </option>
+                                        <option
+                                            value="চিকিৎসা (Treatment)" >
+                                            চিকিৎসা (Treatment)
+                                        </option>
+                                        <option value="চাকুরী (Job)" >
+                                            চাকুরী
+                                            (Job)
+                                        </option>
+                                        <option
+                                            value="কৃষিকাজ (Agriculture)" >
+                                            কৃষিকাজ (Agriculture)
+                                        </option>
+                                        <option
+                                            value="পণ্য পরিবহণ (Goods Transport)" >
+                                            পণ্য পরিবহণ (Goods Transport)
+                                        </option>
+                                        <option
+                                            value="পন্য সরবরাহ (Supply chain)" >
+                                            পন্য সরবরাহ (Supply chain)
+                                        </option>
+                                        <option
+                                            value="পাইকারী/খুচরা বিক্রয় (Wholesale / Retail sale)" >
+                                            পাইকারী/খুচরা বিক্রয় (Wholesale / Retail sale)
+                                        </option>
+                                        <option
+                                            value="মৃতদেহ সৎকার (Funeral)" >
+                                            মৃতদেহ সৎকার (Funeral)
+                                        </option>
+                                        <option
+                                            value="ব্যবসা (Business)" >
+                                            ব্যবসা (Business)
+                                        </option>
+                                        <option
+                                            value="Other" >
+                                            অন্যান্য (Others)
+                                        </option>
+                                    </select>
+                                                                    </div>
+
+                               
+
+                                                 
+                            
+
+                                <div id="othersDiv" class="form-group col-md-6" style="display:none">
+                                    <label for="others_reason">Enter other reason<span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" value="" placeholder="Describe your purpose"
+                                           id="others_reason"
+                                           class="form-control "
+                                           name="others_reason">
+                                                                    </div>
+
+                                <div id="numberDiv" class="form-group col-md-6" style="display:none">
+                                    <label for="vehicle_number">Enter vehicle number<span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" value="" placeholder="XXXXXX"
+                                           id="vehicle_number"
+                                           class="form-control "
+                                           name="vehicle_number">
+                                                                    </div>
+
+
+                                <div class="form-group col-md-6" id="driverDiv1" style="display:none">
+                                    <label for="driver_name">Driver name<span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" value="" placeholder="Enter your driver name"
+                                        id="driver_name"
+                                        class="form-control "
+                                        name="driver_name">
+                                                                    </div>
+                                <div class="form-group col-md-6" id="driverDiv2" style="display:none">
+                                    <label for="driver_license">Driver license number<span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" value="" placeholder="Enter driver license number"
+                                        id="driver_license"
+                                        class="form-control "
+                                        name="driver_license">
+                                                                    </div>
+                                <div class="form-group col-md-12">
+                                    <!-- <div class="form-check form-check-inline"> -->
+                                    <div class="consent_div">
+                                        <input required class="form-check-input" style="margin-bottom: 16px;" name="is_consent"  type="checkbox" id="is_consent">&nbsp;&nbsp;
+                                        <label class="form-check-label  text-muted" style="font-size: 14px;line-height: 18px" for="is_consent">All the information provided by me is correct. I will use this pass only in case of emergency by showing the issued pass and identity card to the duty officer and will maintain the hygiene rules.</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary mt-2"><i class="bi bi-check2"></i> Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+
+    <style>
+    .consent_div {
+    display: flex;
+    }
+
+    .consent_div input {
+        margin: 0px;
+        margin-top:5px;
+    }
+
+    .consent_div label {
+        margin-left: 15px;
+        vertical-align: top;
+    }
+
+    </style>
+
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Collect Pass | Movement Pass {% endblock %}
+
+{% block body %}
+<main id="main">
+    <section id="home" class="home" style="margin-top:50px">
+        <div class="container margin-top" style="margin-top:20px;">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="text-center">
+                                            <img src="https://pcdn1.ezze.dev/uploads/01_05_2021_md._shahidul_islam_BUZFPFWyLNIvUrCNLrJw.jpg"
+                             class="img-fluid user-img" alt="image"></div>
+                        </div>
+        
+        <div class="col-lg-8 col-sm-12 col-md-12 m-auto ">
+            <h5 class="text-muted mt-3 sma smx-text" style="line-height: 28px">
+                                    Greetings! <strong>Md. Shahidul Islam</strong>,<br>
+                    Only in case of emergency, you can use this tool to get permission from the concerned police department by maintaining the hygiene rules in the lockdown.                            </h5>
+            <div class="row">
+                                    <div class="col-md-4 mt-2"><a href="https://movementpass.police.gov.bd/pass/apply"
+                                                  class="btn btn-block btn-success mt-1">Apply</a>
+                    </div>
+                    <div class="col-md-1 mt-2 text-center pl-0 pr-0"><span class="align-middle span-arrow"><i
+                                    class="bi bi-arrow-right-circle d-none d-md-block"></i><i
+                                    class="bi bi-arrow-down-circle d-block d-sm-none"></i></span></div>
+                    <div class="col-md-4 mt-2"><a href="https://movementpass.police.gov.bd/dashboard"
+                                                  class="btn btn-block btn-info mt-1">Collect</a>
+                    </div>
+                    <div class="col-md-3"></div>
+                                                    <div class="col-md-12 mt-3 text-center"><a class="d-block d-sm-none" href="https://movementpass.police.gov.bd/logout"
+                                                               style="margin-left:15px;" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+                                    class="bi bi-box-arrow-right"></i> Logout</a></div>
+                            </div>
+
+
+        </div>
+    </div>
+    </section>
+</main>
+{% endblock %}

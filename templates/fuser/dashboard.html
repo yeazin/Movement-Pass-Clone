@@ -1,0 +1,186 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Dashboard | Movement Pass {% endblock %}
+
+{% block body %}
+<main id="main">
+    <section id="home" class="home" style="margin-top:50px">
+    
+
+<style>
+
+.table_basic{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table_basic th {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.table_basic td, .table_basic th {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 10px;
+}
+
+.table_basic tr:nth-child(even){background-color: #fff;}
+
+/* .table_basic tr:hover {background-color: #f2f2f2;} */
+
+.table_basic th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #ffffff;
+  color: #212529;
+}
+
+
+	@media
+    only screen 
+    and (max-width: 760px), (min-device-width: 768px) 
+    and (max-device-width: 1024px)  {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        .table_basic thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        .table_basic tr{padding-bottom:10px; border-bottom:1px dashed #bfbfbf;}     
+
+        .table_basic tr {
+        margin: 0 0 1rem 0;
+        }
+
+        .table_basic tr:nth-child(odd) {
+        background: #fff;
+        }
+
+        .table_basic td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        .table_basic tbody tr td:last-child {
+            border: none;
+        }    
+
+        .table_basic td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 0;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        /*
+        Label the data
+        You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+        */
+        .table_basic td:nth-of-type(1):before { content: "SL"; }
+        .table_basic td:nth-of-type(2):before { content: "Location From"; }
+        .table_basic td:nth-of-type(3):before { content: "Where to go"; }
+        .table_basic td:nth-of-type(4):before { content: "Tracking No."; }
+        .table_basic td:nth-of-type(5):before { content: "Time"; }
+        .table_basic td:nth-of-type(6):before { content: "Status"; }
+        .table_basic td:nth-of-type(7):before { content: "Action"; }
+	}
+ </style>   
+
+    <div class="container">
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-12">
+                
+                   
+
+                                
+                                        
+
+                
+
+
+                <div class="card">
+
+
+                    <div class="card-body">
+
+                       
+                        <!--                        -->                        <div class="row">
+                            <div class="col-md-10"><h4>Movement Pass</h4></div>
+                            
+                                <div class="col-md-2">
+                                                                            <a href="https://movementpass.police.gov.bd/pass/apply"
+                                           class="btn btn-success float-right btn-block"><i
+                                                    class="bi bi-plus-circle"></i> New Pass</a>
+                                                                    </div>
+                                                    </div>
+                        <!-- <div class="table-responsive"> -->
+                            <table class="table_basic mt-2">
+                                <thead  role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader" class="text-centerx">SL</th>
+                                    <th role="columnheader" class="text-centerx">Location From</th>
+                                    <th role="columnheader" class="text-centerx">Where to go</th>
+                                    <th role="columnheader" class="text-centerx">Tracking No.</th>
+                                    <!-- <th role="columnheader" class="text-centerx">পাশ মেয়াদোত্তীর্ণ তারিখ</th> -->
+                                    <th role="columnheader" class="text-centerx">Time</th>
+                                    <th role="columnheader" class="text-centerx">Status</th>
+                                    <th role="columnheader" class="text-centerx">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody role="rowgroup">
+                                                                                                     <tr role="row">
+                                        <td role="cell" class="text-centerx">১.</td>
+                                        <td role="cell" class="text-centerx">Gazipur, Board Bazar</td>
+                                        <td role="cell" class="text-centerx">Airtport</td>
+                                        <td role="cell" class="text-centerx">6995724845</td>
+                                        <!-- <td role="cell" class="text-centerx"> -->
+                                            
+                                           
+
+                                            <!-- <br> -->
+                                        <!-- </td> -->
+                                        <td role="cell" class="text-centerx">৫ ঘন্টা</td>
+                                        <td role="cell" class="text-centerx">
+                                                                                                                                                                                            <span class="badge badge-danger badge-lg p-2"><i
+                                                                class="icofont-ban"></i> Expired</span>
+                                                                                            
+
+                                        </td>
+                                        <td role="cell" class="text-centerx">
+                                                                                        <a href="https://movementpass.police.gov.bd/pass/preview/eyJpdiI6IkVIeXkrT1BjQWNjZGhwdDNaanh1TWc9PSIsInZhbHVlIjoiVXBqVjJoTWNtV0Uyc1VVTkJOYkF6dz09IiwibWFjIjoiZTJjM2JhMmYwNzE2MjQ4OWQ3ZmNiNjI0ZWVhYzQ1OTA1MWM1Y2JkNmJlMmNlYTAzMWZjYTY5NDhmNTEzNDQ4OCJ9"
+                                               class="btn btn-primary btn-sm"><i class="icofont icofont-eye"></i> View</a>
+                                                                                    </td>
+                                    </tr>
+                                                                </tbody>
+                            </table>
+                        <!-- </div> -->
+                      
+                                                    <div class="d-flex justify-content-center">
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </section>
+</main>
+{% endblock %}
