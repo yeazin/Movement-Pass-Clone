@@ -60,7 +60,14 @@ class Register(View):
                     id_name=id_name)
         user_obj.save()
         return redirect('home')
-        
+
+# Edit Profile 
+class EditProfile(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs) 
+    def get(self,request):
+        return render(request,'fuser/profile_edit.html')  
         
 
 
