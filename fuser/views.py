@@ -18,7 +18,7 @@ from django.contrib.auth.hashers import make_password
 class Register(View):
     def get(self,request,*args,**kwargs):
         gender_obj = Gender.objects.all()
-        district_obj = District.objects.all().order_by('d_name')
+        district_obj = District.objects.all().order_by('name')
         id_obj = IDtype.objects.all()
         context={
             'gender':gender_obj,
@@ -29,8 +29,8 @@ class Register(View):
     def post(self, request,*args,**kwargs):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
-        #district_get = request.POST.get('district')
-        #district = District.objects.get(d_name=district_get)
+        district_get = request.POST.get('district')
+        district = District.objects.get(name=district_get)
         gender_get = request.POST.get('gender')
         gender = Gender.objects.get(name=gender_get)
         dob = request.POST.get('date')
@@ -55,7 +55,7 @@ class Register(View):
             }
             user = User(**auth_info)
             user.save()
-        user_obj = PassUser(user=user,name=name, gender=gender,#district=district,\
+        user_obj = PassUser(user=user,name=name, gender=gender,district=district,\
                     thana=thana,image=image,id_number=id_number,\
                     id_name=id_name)
         user_obj.save()
@@ -67,7 +67,29 @@ class Register(View):
 # Login For  Movement Pass
 class LoginView(View):
     def get(self,request,*args,**kwargs):
+        if request.user.is_authenticated:
+            return redirect('dashboard')
         return render(request,'fuser/login.html')
+    def post(self,request,*args,**kwargs):
+        uname = request.POST.get('phone')
+        password = request.POST.get('password')
+        user = authenticate(request, username=uname, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.warning(request,'Phone Number or Password Didnot Match')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+# Logout View
+class LogoutView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request,*args,**kwargs):
+        logout(request)
+        return redirect('home')
 
 # Dashboard for Movement Pass
 class Dashboard(View):

@@ -19,7 +19,7 @@ class Gender(models.Model):
 
 class PassUser(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE )
     name = models.CharField(max_length=300, blank=True, null=True)
     gender = models.ForeignKey(Gender, null=True, on_delete=models.DO_NOTHING)
     date_of_birth = models.DateField(null=True, auto_now_add=False)

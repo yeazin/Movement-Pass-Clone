@@ -24,10 +24,10 @@ drive = (
 
 # address type
 class District(models.Model):
-    d_name = models.CharField(max_length=100,verbose_name='District name', blank=False, null=True)
+    name = models.CharField(max_length=100,verbose_name='District name', blank=False, null=True)
 
     def __str__(self):
-        return self.d_name
+        return self.name
 
 # Subdistrict
 class Subdistrict(models.Model):
