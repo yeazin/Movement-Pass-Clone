@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
-from .models import District, Subdistrict
 from django.views import View
 # models import 
-from .models import District,Subdistrict,MovementReason,MovementPass
+from .models import District,MovementReason,MovementPass
 from sadmin.models import IDtype, Gender, PassUser
 # essential imports
 from django.http import HttpResponseRedirect
@@ -19,23 +18,26 @@ from django.contrib.auth.hashers import make_password
 class Register(View):
     def get(self,request,*args,**kwargs):
         gender_obj = Gender.objects.all()
-        district_obj = District.objects.all().order_by('word')
+        district_obj = District.objects.all().order_by('d_name')
+        id_obj = IDtype.objects.all()
         context={
             'gender':gender_obj,
+            'id_':id_obj,
             'district':district_obj
         }
         return render(request,'fuser/register.html',context)
     def post(self, request,*args,**kwargs):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
-        district_get = request.POST.get('district')
-        district = District.objects.Get(name=district_get)
+        #district_get = request.POST.get('district')
+        #district = District.objects.get(d_name=district_get)
         gender_get = request.POST.get('gender')
         gender = Gender.objects.get(name=gender_get)
         dob = request.POST.get('date')
         thana = request.POST.get('thana')
         id_name_get = request.POST.get('id_name')
         id_name = IDtype.objects.get(name=id_name_get)
+        id_number = request.POST.get('id_number')
         image = request.FILES.get('image')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
@@ -53,8 +55,11 @@ class Register(View):
             }
             user = User(**auth_info)
             user.save()
-        user_obj = PassUser(user=user,name=name, gender=gender,district=district,\
-                    thana=thana,image=image,)
+        user_obj = PassUser(user=user,name=name, gender=gender,#district=district,\
+                    thana=thana,image=image,id_number=id_number,\
+                    id_name=id_name)
+        user_obj.save()
+        return redirect('home')
         
         
 
