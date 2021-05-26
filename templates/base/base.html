@@ -12,23 +12,32 @@
     <link rel="stylesheet" href="{% static 'css/min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %}  {% endblock %}</title>
+    <style>{% block custom_css %} {% endblock %}</style>
   </head>
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-        <a href="https://movementpass.police.gov.bd" class="logo mr-auto">
+        <a href="{% url 'home' %}" class="logo mr-auto">
             <img src="/assets/img/police-logo.png" alt="" class="img-fluid">
-            MOVEMENT PASS        </a>
+            MOVEMENT PASS BD        </a>
         <!-- Uncomment below if you prefer to use text as a logo -->
         <!-- <h1 class="logo mr-auto"><a href="index.html">Butterfly</a></h1> -->
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-
+                      {% if request.user.is_authenticated %}
+                      <li><a href="{% url 'dashboard' %}"> Dashboard </a></li>
+                      <li><a href="{% url 'apply' %}"> Apply Pass </a></li>
+                      <li><a href=" ">Collect Pass </a></li>
+                      <li><a href=" ">Edit Profile</a></li>
+                      <li><a href="{% url 'logout' %}">Logout</a></li>
+                      {% else %}
                     <li><a href="{% url 'register' %}"> Register</a></li>
                     <li><a href="{% url 'apply' %}"> Apply </a></li>
-                    <li><a href="https://movementpass.police.gov.bd/login">Collect </a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'register' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}"> <i class="bi bi-box-arrow-right"></i> Log In</a></li>
+                    {% endif %}
+                    
                                 
      
 
@@ -48,7 +57,7 @@
  {% endblock %}
  <footer class="text-muted footer">
   <div class="container">
-    <p class="text-center">&copy; ICT Police Headquarters | Version 2.14.05</p>
+    <p class="text-center">&copy; Made by Yeasin | Version 1.0.1 </p>
   </div>
 </footer>
 

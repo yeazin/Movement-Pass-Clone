@@ -75,8 +75,17 @@ class LoginView(View):
         password = request.POST.get('password')
         user = authenticate(request, username=uname, password=password)
         if user is not None:
-            login(request, user)
+            login(request,user)
             return redirect('dashboard')
+            '''
+            check = user.passuser_set.filter(is_admin=True)
+            if check :
+                login(request, user)
+                return redirect('home')
+            elif not check:
+                login(request, user)
+                return redirect('dashboard')
+            '''
         else:
             messages.warning(request,'Phone Number or Password Didnot Match')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
