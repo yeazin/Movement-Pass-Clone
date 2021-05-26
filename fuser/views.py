@@ -67,7 +67,33 @@ class EditProfile(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs) 
     def get(self,request):
-        return render(request,'fuser/profile_edit.html')  
+        gender_obj = Gender.objects.all()
+        district_obj = District.objects.all().order_by('name')
+        id_obj = IDtype.objects.all()
+        context={
+            'gender':gender_obj,
+            'id_':id_obj,
+            'district':district_obj
+        }
+        return render(request,'fuser/profile_edit.html', context )
+
+    def post(self,request):
+        obj = request.user.passuser
+        #id_obj = request.POST.get('id_type')
+        #obj.id_name = IDtype.objects.get(name=id_obj)
+        gender_obj = request.POST.get('gender')
+        obj.gender = Gender.objects.get(name=gender_obj)
+        district_obj = request.POST.get('district')
+        obj.district = District.objects.get(name=district_obj)
+        obj.thana = request.POST.get('thana') 
+        obj.id_number = request.POST.get('id_number')
+        img = obj.image = request.FILES.get('image')
+        if not img:
+            pass 
+        
+        obj.save()
+        messages.success(request,'Profile has been Updated')
+        return redirect ('home')
         
 
 

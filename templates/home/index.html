@@ -54,8 +54,15 @@ and (max-device-width: 1024px) {
             <div class="col-lg-4 col-sm-12 col-md-12">
                 <div class="text-center">
                         {% load static %}
-                                            <img src="{{ user.passuser.image.url }}"
-                             class="img-fluid user-img" alt="image"></div>
+                        {% if user.passuser.image %}
+                                        <img src="{{ user.passuser.image.url }}"
+                             class="img-fluid user-img" alt="image"> 
+                        {% else %}
+                        <img src="{% static 'img/user.png' %}"
+                        class="img-fluid user-img" alt="image" ></div> 
+                        {% endif %}                   
+                    
+                    </div>
                         </div>
         <div class="col-lg-8 col-sm-12 col-md-12 m-auto ">
             <h5 class="text-muted mt-3 sma smx-text" style="line-height: 28px">
