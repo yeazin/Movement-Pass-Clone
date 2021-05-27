@@ -5,7 +5,6 @@ from .models import District,MovementReason,MovementPass
 from sadmin.models import IDtype, Gender, PassUser
 # essential imports
 from django.http import HttpResponseRedirect
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,logout
 from django.utils.decorators import method_decorator
@@ -109,7 +108,7 @@ class LoginView(View):
         user = authenticate(request, username=uname, password=password)
         if user is not None:
             login(request,user)
-            return redirect('dashboard')
+            return redirect('home')
             '''
             check = user.passuser_set.filter(is_admin=True)
             if check :
