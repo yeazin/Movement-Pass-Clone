@@ -7,28 +7,24 @@ from sadmin.models import PassUser, District
 
 # Choices Fields 
 
-spend = (
-    ('1', 'One Hour'),
-    ('2', 'Two Hour'),
-    ('3', 'Three Hour'),
-    ('4', 'Four Hour'),
-    ('5', 'Six Hour'),
-    ('6', ' Eight Hour')
-)
+class TimeSpend(models.Model):
+    time = models.CharField(max_length=20, null=True)
+    
+    def __str__(self):
+        return self.time
 
-move_type =(
-    ('1', 'Come and Go'),
-    ('2', 'Only Go'))
+class MoveType(models.Model):
+    type = models.CharField(max_length=50, null=True)
 
-drive = (
-    ('1', 'Yes'),
-    ('2',' No')   
-)
+    def __str__(self):
+        return self.type 
 
-take_car = (
-    ('1', 'Yes'),
-    ('2','No')
-)
+class TakeCar(models.Model):
+    name = models.CharField(max_length=20, null=True)
+
+    def __str__(self):
+        return self.name 
+
 
 
 # Subdistrict
@@ -53,12 +49,11 @@ class MovementPass(models.Model):
     _to = models.CharField(max_length=200, blank=False, null=True, verbose_name='To Where')
     district = models.ForeignKey(District, on_delete=models.DO_NOTHING, verbose_name='District Name')
     sub_dristrict = models.CharField(max_length=200,verbose_name='Sub Dristrict Name', blank=True, null=True)
-    time_spand = models.CharField(max_length=20, choices=spend, verbose_name='Time spending')
-    move = models.CharField(max_length=20, choices=move_type, default='1', verbose_name='Movement Type')
+    time_spand = models.ForeignKey(TimeSpend, on_delete=models.CASCADE, null=True, default=None)
+    move = models.ForeignKey(MoveType, on_delete=models.DO_NOTHING, null=True)
     date = models.DateTimeField(auto_now_add=True)
-    take_car = models.CharField(max_length=3,choices=take_car,null=True, default='2')
+    take_car = models.ForeignKey(TakeCar, on_delete=models.DO_NOTHING, null=True)
     car_number = models.CharField(max_length=100, null=True, blank=True, verbose_name='Car Number')
-    drive = models.CharField(max_length=10, choices=drive, default='2', verbose_name='Drive Your self ?')
     reason = models.ForeignKey(MovementReason, on_delete=models.DO_NOTHING, null=True)
     is_approved = models.BooleanField(default=False)
     is_expired = models.BooleanField(default=False)
