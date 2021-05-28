@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views import View
 # models import 
-from .models import District,MovementReason,MovementPass
-from sadmin.models import IDtype, Gender, PassUser
+from .models import MovementReason,MovementPass
+from sadmin.models import IDtype, Gender, PassUser,District
 # essential imports
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -58,7 +58,9 @@ class Register(View):
                     thana=thana,image=image,id_number=id_number,\
                     id_name=id_name)
         user_obj.save()
-        return redirect('home')
+        messages.success(request,'Please Login to Continue')
+        return redirect('login')
+
 
 # Edit Profile 
 class EditProfile(View):
@@ -139,14 +141,16 @@ class Dashboard(View):
 
 # Apply for Movement Pass
 class ApplyPass(View):
-    def get(self,request,*args,**kwargs):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs) 
+    def get(self,request):
         district_obj = District.objects.all()
-        move_reason_obj = MovementReason.objects.all()
         move = MovementPass.objects.all()
+
         context ={
             'district':district_obj,
-            'move':move_reason_obj,
-            'obj':move
+            'move':move
         }
         return render(request,'fuser/pass_apply.html', context)
 
@@ -155,13 +159,13 @@ class ApplyPass(View):
         _to = request.POST.get('to')
         district_obj = request.POST.get('district')
         district = District.objects.get(district=district_obj)
-        subdistrict = request.POST.get('subdistrict')
+        #subdistrict = request.POST.get('subdistrict')
         reason_obj = request.POST.get('reason')
         reason = MovementReason.objects.get(reason=reason_obj)
 
         movementpass_obj = MovementPass(_from=_from,_to=_to,
                                     district=district,
-                                    sub_dristrict=sub_dristrict,
+                                    #sub_dristrict=sub_dristrict,
                                     reason=reason)
         movementpass_obj.save()
         return redirect('home')

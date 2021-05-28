@@ -61,18 +61,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-calendar"></i></span>
                                         </div>
-                                       <input type="text" required name="pass_time" id="pass_time" class="form-control" style="padding: .375rem .75rem;background:#fff" value="04-05-2021" autocomplete='off' readonly>
-                                        <div class="input-group-append">
-                                            <select  class="form-control editable" name="start_time" style="width: 100px;">
-                                                                                                <option >12:00</option>
-  
-                                                                                            </select>
-
-                                            <select  class="form-control" name="start_hour">
-                                                                                                <option value="AM" >AM</option>
-                                                <option value="PM" SELECTED>PM</option>
-                                            </select>
-                                        </div>
+                                       <input type="datetime-local" class="form-control" name="date" id="">
                                     </div>                    
                                 </div>
 
@@ -192,7 +181,15 @@
                                         </option>
                                     </select>
                                                                     </div>
-
+                                                                  <select>
+                                                                    {% for m in move %}
+                                                                      <option value="">
+                                                                        {{ m.get_take_car_display|lower }}
+                                                                      </option>
+                                                                      {% endfor %}
+                                                                  </select>  
+                                                                               
+                                                                                
                                
 
                                                  

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import View
 # models import 
-from fuser.models import District,MovementReason,MovementPass
-from .models import IDtype, Gender, PassUser
+#from fuser.models import MovementReason,MovementPass
+from .models import IDtype, Gender, PassUser, District
 # essential imports
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required

@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.base import ModelStateFieldsCacheDescriptor
-from fuser.models import District
 import uuid
 
 class IDtype(models.Model):
@@ -16,6 +14,13 @@ class Gender(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+# address type
+class District(models.Model):
+    name = models.CharField(max_length=100,verbose_name='District name', blank=False, null=True)
+
+    def __str__(self):
+        return self.name
 
 class PassUser(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
