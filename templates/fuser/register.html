@@ -89,22 +89,9 @@
                                             class="text-warning">(DDMMYY)</span><span
                                             class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <select name="day" id="day" class="form-control">
-                                        <option value="" selected disabled>Day</option>
-                                                                                    <option value="01" >01</option>
-                                                                            </select>
-                                    <select name="month" id="month" class="form-control">
-                                        <option value="" selected disabled>Month</option>
-                                                                                    <option value="01" >01</option>
-                                                                            </select>
-                                    <select name="year" id="year" class="form-control">
-                                        <option value="" selected disabled>Year</option>
-                                                                                    <option value="2021" >2021</option>
-                                                                        
-
-                                                                            </select>
+                                    <input type="date" class="form-control" name="date" id="">
                                 </div>
-                                                            </div>
+                                </div>
                             <div class="form-group col-md-6">
                                 <label for="id_type">Select your ID type<span
                                             class="text-danger">*</span></label>
@@ -139,13 +126,12 @@
                                        class="form-control " name="password2" required>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="photo">Your photo</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1" style="padding:.200rem .25rem;">
-                                    <img src="/assets/img/profile-placeholder.png" id="photo_prv"
-                                         style="max-width:36px;max-height:28px">
+                                    
                                     </span>
                                     </div>
                                     <div class="custom-file">
@@ -161,20 +147,7 @@
 
                             </div>
 
-                            <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
 
-                            <div class="form-group col-md-6 ">
-                                <label for="photo">Captcha Verify <span
-                                            class="text-danger">*</span></label>
-                                <div class="text-center">
-                                    <div data-sitekey="6LeISasaAAAAAECSS_Us7sATWuTFlJggNqC4q30o" class="g-recaptcha"></div>
-                                </div>
-                                
-                                <small class="text-danger captcha_error"
-                                       style="margin-top: 10px; margin-bottom: 10px;display:none">
-                                    <strong class="text-center">Verify Captcha to continue</strong>
-                                </small>
-                            </div>
 
                             <div class="col-12">
                                 <div class="text-center">

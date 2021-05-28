@@ -1,7 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 # models import 
-from .models import MovementReason,MovementPass
+from .models import MovementReason,MovementPass, TimeSpend,\
+    MoveType, TakeCar 
 from sadmin.models import IDtype, Gender, PassUser,District
 # essential imports
 from django.http import HttpResponseRedirect
@@ -56,7 +57,7 @@ class Register(View):
             user.save()
         user_obj = PassUser(user=user,name=name, gender=gender,district=district,\
                     thana=thana,image=image,id_number=id_number,\
-                    id_name=id_name)
+                    id_name=id_name,date_of_birth = dob)
         user_obj.save()
         messages.success(request,'Please Login to Continue')
         return redirect('login')
@@ -145,30 +146,73 @@ class ApplyPass(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs) 
     def get(self,request):
-        district_obj = District.objects.all()
-        move = MovementPass.objects.all()
-
+        district_obj = District.objects.all().order_by('name')
+        reason_obj = MovementReason.objects.all().order_by('reason')
+        spend_obj  = TimeSpend.objects.all()
+        car_obj = TakeCar.objects.all()
+        move_obj = MoveType.objects.all()
         context ={
             'district':district_obj,
-            'move':move
+            'reason':reason_obj,
+            'spend':spend_obj,
+            'car':car_obj,
+            'move':move_obj
         }
         return render(request,'fuser/pass_apply.html', context)
 
     def post(self,request,*args,**kwargs):
+        user = request.user.passuser 
         _from = request.POST.get('from')
         _to = request.POST.get('to')
-        district_obj = request.POST.get('district')
-        district = District.objects.get(district=district_obj)
-        #subdistrict = request.POST.get('subdistrict')
-        reason_obj = request.POST.get('reason')
-        reason = MovementReason.objects.get(reason=reason_obj)
+        #district_get = request.POST.get('district')
+        #district = District.objects.get(name=district_get)
+        subdistrict = request.POST.get('subdistrict')
+        #reason_obj = request.POST.get('reason')
+        #reason = MovementReason.objects.get(reason=reason_obj)
+        #time_obj = request.POST.get('duration')
+        #time_spend = TimeSpend.objects.get(time=time_obj)
+        #move_obj = request.POST.get('move')
+        #move = MoveType.objects.get(type=move_obj)
+        date = request.POST.get('date')
 
-        movementpass_obj = MovementPass(_from=_from,_to=_to,
-                                    district=district,
-                                    #sub_dristrict=sub_dristrict,
-                                    reason=reason)
+        movementpass_obj = MovementPass(user=user,_from=_from,_to=_to,\
+                                    #district=district,\
+                                    #time_spend=time_spend,\
+                                    sub_dristrict=subdistrict,#move=move,\
+                                    #reason=reason,\
+                                     date=date)
         movementpass_obj.save()
-        return redirect('home')
+        messages.success(request, 'Thanks for the Apply \ Wait for the Approval Please!')
+        return redirect('collect')
+
+# Collect Pass View
+class CollectPass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request):
+        user = request.user
+        pass_obj = user.passuser.movementpass_set.all().order_by('-id')
+        context ={
+            'pass':pass_obj,
+            'user':user
+        }
+        return render(request,'fuser/collect.html',context)
+
+# View pass 
+class ViewPass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request,id):
+        obj = get_object_or_404(MovementPass,id=id)
+        context ={
+            'obj':obj
+        }
+        return render(request,'fuser/single_pass.html',context)
+
         
 
 

@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Dashboard | Movement Pass {% endblock %}
+{% block title %} Collect Pass | Movement Pass BD {% endblock %}
 
 {% block body %}
 <main id="main">
@@ -119,12 +119,26 @@
 
                     <div class="card-body">
 
+
+                        {% if messages %}
+                        <div class="messages" >
+                            {% for message in messages %}
+                                <div class="alert alert-primary" {% if message.tags %}
+                                    class="{{ message.tags }}"{% endif %}>{{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+            
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                        
                         <!--                        -->                        <div class="row">
                             <div class="col-md-10"><h4>Movement Pass</h4></div>
                             
                                 <div class="col-md-2">
-                                                                            <a href="https://movementpass.police.gov.bd/pass/apply"
+                                                                            <a href="{% url 'apply' %}"
                                            class="btn btn-success float-right btn-block"><i
                                                     class="bi bi-plus-circle"></i> New Pass</a>
                                                                     </div>
@@ -144,29 +158,30 @@
                                 </tr>
                                 </thead>
                                 <tbody role="rowgroup">
-                                                                                                     <tr role="row">
-                                        <td role="cell" class="text-centerx">১.</td>
-                                        <td role="cell" class="text-centerx">Gazipur, Board Bazar</td>
-                                        <td role="cell" class="text-centerx">Airtport</td>
-                                        <td role="cell" class="text-centerx">6995724845</td>
-                                        <!-- <td role="cell" class="text-centerx"> -->
-                                            
-                                           
-
-                                            <!-- <br> -->
-                                        <!-- </td> -->
-                                        <td role="cell" class="text-centerx">৫ ঘন্টা</td>
+                                    {% for p in pass %}
+                                        <tr role="row">
+                                        <td role="cell" class="text-centerx">{{forloop.counter}}</td>
+                                        <td role="cell" class="text-centerx">{{ p.from_m }}</td>
+                                        <td role="cell" class="text-centerx">{{ p.to_m }}</td>
+                                        <td role="cell" class="text-centerx">{{ p.id }}</td>
+                                        <td role="cell" class="text-centerx">{{ p.time_spand }}</td>
                                         <td role="cell" class="text-centerx">
-                                                                                                                                                                                            <span class="badge badge-danger badge-lg p-2"><i
+                                            {% if p.is_expired == True %} 
+                                                                <span class="badge badge-danger badge-lg p-2"><i
                                                                 class="icofont-ban"></i> Expired</span>
+                                            {% else %}
+                                            <span class="badge badge-success badge-lg p-2"><i
+                                                class="icofont-ban"></i>Active</span>
+                                            {% endif %}
                                                                                             
 
                                         </td>
                                         <td role="cell" class="text-centerx">
-                                                                                        <a href="https://movementpass.police.gov.bd/pass/preview/eyJpdiI6IkVIeXkrT1BjQWNjZGhwdDNaanh1TWc9PSIsInZhbHVlIjoiVXBqVjJoTWNtV0Uyc1VVTkJOYkF6dz09IiwibWFjIjoiZTJjM2JhMmYwNzE2MjQ4OWQ3ZmNiNjI0ZWVhYzQ1OTA1MWM1Y2JkNmJlMmNlYTAzMWZjYTY5NDhmNTEzNDQ4OCJ9"
+                                                                                        <a href="{% url 'single' p.id %}"
                                                class="btn btn-primary btn-sm"><i class="icofont icofont-eye"></i> View</a>
                                                                                     </td>
                                     </tr>
+                                    {% endfor %}
                                                                 </tbody>
                             </table>
                         <!-- </div> -->
@@ -183,4 +198,6 @@
     </div>
     </section>
 </main>
+
+
 {% endblock %}

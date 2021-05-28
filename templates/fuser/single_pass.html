@@ -1,0 +1,175 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {{ obj.id }} | Movement Pass BD {% endblock %}
+{% block custom_css %}
+.image_custom{
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: top;
+}
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+@media print {
+  .hidden-print,
+  .hidden-print * {
+      display: none !important;
+  }
+}
+{% endblock %}
+
+{% block body %}
+<main>
+    <section id="home" class="home" style="margin-top:50px">
+        <div class="container">
+        <div id="html-content-holder">
+            <div id="main">
+            <div class="card" >
+                <div class="card-header">
+                    <div class="row">
+                        <div class="text-left col-6">EMERGENCY MOVEMENT PASS</div>
+                        <div class="text-right col-6">
+                                            {% if obj.is_expired == True %}
+                                            <span class="badge badge-danger badge-lg p-2"><i
+                                            class="icofont-ban"></i> Expired</span>
+                                            {% else %}
+                                            <span class="badge badge-success badge-lg p-2"><i
+                                                class="icofont-ban"></i> Active </span>
+                                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-bordered text-center mb-0" >
+
+                        <tbody id="table">
+
+                        <tr >
+                            <th  colspan="2" rowspan="4">
+
+                                <a href="javascript:void(0)">
+                                    <img class="image_custom" src="{{ obj.user.image.url }}">
+                                </a>
+
+                                <br>
+                                <b><span class="text-muted">NAME:</span> {{obj.user.name}}</b>
+                                <br>
+                                <span class="text-muted">AGE: </span>           23
+                                Years                                <br>
+                                <span class="text-muted">ID NUMBER:</span> {{obj.user.id_number }}
+                                <br>
+                                <span class="text-muted">MOBILE NO:</span> {{ obj.user.user.username }}
+                            </th>
+                            <th colspan="2">
+                                                                <b> You Took Movement Pass 1 times</b>
+                            </th>
+
+                        </tr>
+
+                        <tr>
+                            <th colspan="4"><span class="text-muted">Reason for the pass</span><br> <b>{{obj.reason }}</b></th>
+
+                        </tr>
+                        <tr>
+                            <th colspan="4">
+                            <span class="text-muted">Time allowed for movement</span>
+                                <br>
+                                <b class="traveltime">
+                                    {{ obj.time_spand }}
+                                </b>
+                                <br>
+                            </th>
+
+                        </tr>
+                        <tr>
+
+
+                        </tr>
+
+                        <tr>
+                        </tr>
+                        <tr>
+                            <th colspan="4"><span class="text-muted">Date and Time</span> <br> <b> {{ obj.date }}</b> - <b>02/05/2021 9:00 am</b></th>
+                        </tr>
+                        <tr>
+                        <th  colspan="4:" rowspan="2">{{ obj.from_m }}<br/>to<br/>{{ obj.to_m }}<br/>{% if obj.move == 'Only Go' %}(Round Trip){% else %} ( only Go ){% endif %}</th>
+                                                    </tr>
+                        <tr>
+                        </tr>
+
+                        <tr>
+
+                            
+                            <th colspan="4" >
+                                <span class="text-muted">Tracking no.</span><br><b>{{obj.id}}</b>
+                                <br>
+                                <img src="{{ obj.qr_image.url }}" alt="QR code">
+
+                                
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-1">
+                                                <img src="{{ obj.qr_image.url }}" style="height: 50px;width: 50px;object-fit: contain" alt="">
+                                            </div>
+                                            <div class="col-sm-11">
+                                                <span class="text-danger"><strong>The pass will be considered invalid if you do not carry the identity card and mobile number provided in the form along with the issued pass during the trip.</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-primary btn-md clearfix hidden-print" id="download"> Download Pass</button>
+            
+        </div>
+        <div id="previewImage" style="display: none">
+        </div>
+    </div>
+
+
+    </section>
+</main><!-- End #main -->
+
+{% endblock %}
+{% block script %}
+<script>
+ window.onload = function () {
+        document.getElementById("download")
+            .addEventListener("click", () => {
+                const invoice = this.document.getElementById("main");
+                console.log(invoice);
+                console.log(window);
+                var opt = {
+                    margin:0.1,
+                    filename: '{{ obj.id }}.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 4 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                html2pdf().from(invoice).set(opt).save();
+            });
+        };
+</script>
+
+{% endblock %}
