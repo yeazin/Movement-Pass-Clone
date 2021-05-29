@@ -1,3 +1,4 @@
+
 {% extends 'base/base.html' %}
 
 {% block title %} {{ obj.id }} | Movement Pass BD {% endblock %}
@@ -24,6 +25,7 @@
 {% endblock %}
 
 {% block body %}
+{% if obj.is_approved == True %}
 <main>
     <section id="home" class="home" style="margin-top:50px">
         <div class="container">
@@ -60,7 +62,8 @@
                                 <br>
                                 <b><span class="text-muted">NAME:</span> {{obj.user.name}}</b>
                                 <br>
-                                <span class="text-muted">AGE: </span>           23
+                                
+                                <span class="text-muted">AGE: </span>          23
                                 Years                                <br>
                                 <span class="text-muted">ID NUMBER:</span> {{obj.user.id_number }}
                                 <br>
@@ -149,7 +152,28 @@
 
 
     </section>
-</main><!-- End #main -->
+</main>
+<!-- End #main -->
+{% else %}
+<head>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
+    <style>
+        a{
+           color: #03132f;
+        }
+    </style>
+  </head>
+  <body style="background-color: #edf8fe;">
+    <div class="mainbox" style="margin-top:40px;background-color: #edf8fe; ">
+      <div class="err" style="color:#03132f ;">4</div>
+      <i class="far fa-question-circle fa-spin" style="color:#03132f ;"></i>
+      <div class="err2" style="color:#03132f ;">4</div>
+      <div class="msg">Access Denied <p>Let's go <a href="{% url 'home' %}"><strong>HOME</strong></a> and try from there.</p></div>
+    </div>
+{% endif %}
 
 {% endblock %}
 {% block script %}
@@ -173,3 +197,4 @@
 </script>
 
 {% endblock %}
+

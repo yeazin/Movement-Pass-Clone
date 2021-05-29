@@ -146,6 +146,7 @@ class ApplyPass(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs) 
     def get(self,request):
+         
         district_obj = District.objects.all().order_by('name')
         reason_obj = MovementReason.objects.all().order_by('reason')
         spend_obj  = TimeSpend.objects.all()
@@ -161,28 +162,6 @@ class ApplyPass(View):
         return render(request,'fuser/pass_apply.html', context)
 
     def post(self,request,*args,**kwargs):
-        user = request.user.passuser 
-        _from = request.POST.get('from')
-        _to = request.POST.get('to')
-        #district_get = request.POST.get('district')
-        #district = District.objects.get(name=district_get)
-        subdistrict = request.POST.get('subdistrict')
-        #reason_obj = request.POST.get('reason')
-        #reason = MovementReason.objects.get(reason=reason_obj)
-        #time_obj = request.POST.get('duration')
-        #time_spend = TimeSpend.objects.get(time=time_obj)
-        #move_obj = request.POST.get('move')
-        #move = MoveType.objects.get(type=move_obj)
-        date = request.POST.get('date')
-
-        movementpass_obj = MovementPass(user=user,_from=_from,_to=_to,\
-                                    #district=district,\
-                                    #time_spend=time_spend,\
-                                    sub_dristrict=subdistrict,#move=move,\
-                                    #reason=reason,\
-                                     date=date)
-        movementpass_obj.save()
-        messages.success(request, 'Thanks for the Apply \ Wait for the Approval Please!')
         return redirect('collect')
 
 # Collect Pass View

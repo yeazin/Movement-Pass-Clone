@@ -11,8 +11,9 @@
             <div class="col-md-8">
                                     <div class="card">
                         <div class="card-header">Provide necessary information for movement pas</div>
+                        
                         <div class="card-body">
-                            <form class="form-row" id="pass_form" action="" method="POST"
+                            <form class="form-row" id="pass_form" action="{% url 'apply' %}" method="POST"
                                   enctype="multipart/form-data">
                                                                 {% csrf_token %}
                                   <div class="form-group col-md-6">
@@ -92,7 +93,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="pass_reason">Reason for the Movement Pass<span
                                             class="text-danger">*</span></label>
-                                    <select  class="form-control " id="pass_reason"
+                                    <select  class="form-control " 
                                             name="reason">
                                         <option value="">Select Reason</option>
                                        {% for r in reason %}

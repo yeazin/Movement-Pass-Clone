@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from datetime import date, datetime
+
+
 
 class IDtype(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
@@ -34,6 +37,17 @@ class PassUser(models.Model):
     id_number = models.CharField(max_length=100, blank=False, null=True, verbose_name='Id Number')
     image = models.ImageField(upload_to = 'profile', null=True)
     is_admin = models.BooleanField(default=False)
+    '''
+    def age(self):
+        today = datetime.date.today()
+        age_finder = today.year - self.year - ((today.month, today.day) < (self.month, self.day))
+        return age_finder
+    '''
+    def calculateAge(self):
+        today = date.today()
+        age = today.year - self.year - ((today.month, today.day) <(self.month, self.day))
+  
+        return age
 
     def __str__(self):
         return f"{ self.id } - { self.name }"

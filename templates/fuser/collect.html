@@ -177,9 +177,14 @@
 
                                         </td>
                                         <td role="cell" class="text-centerx">
-                                                                                        <a href="{% url 'single' p.id %}"
+                                            {% if p.is_approved == True %}
+                                                <a href="{% url 'single' p.id %}"
                                                class="btn btn-primary btn-sm"><i class="icofont icofont-eye"></i> View</a>
-                                                                                    </td>
+                                            {% else %}
+                                            <a href="#"
+                                            class="btn btn-danger btn-sm"><i class="icofont icofont-eye"></i>Not Approved </a>
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                                                 </tbody>
