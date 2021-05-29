@@ -1,0 +1,47 @@
+{% extends 'sadmin/base/base.html' %}
+{% block title %} All Users | Movement Pass BD {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">All Movement Pass Users</h4>
+           <!-- <div class="right" style="float: right;"><a href="" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Add Movement Pass </a></div> -->
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            
+                            <th> Name </th>
+                            <th> User ID </th>
+                            <th> Phone </th>
+                            <th> Total Pass </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in all_users %}
+                        <tr>
+                            <td><a href="{% url 'single_user' p.id %}">{{ p.name }}</a></td>
+                            <td> <p class="btn btn-sm btn-dark">{{ p.id }}</p></td>
+                            
+                            <td>+88 {{ p.user.username }}</td>
+                            <td>  </td>
+                            <td> </td>
+                        </tr>
+                        {% endfor %}
+                      
+                    </tbody>
+                </table>
+              </div> 
+        </div> 
+    </div>
+
+</div>
+{% endblock %}

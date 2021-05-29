@@ -1,0 +1,132 @@
+{% extends 'sadmin/base/base.html' %}
+{% block title %}  | Movement Pass BD {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="row " style="padding: 10px;">
+                <div class="col-10 mx-auto">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3> User Information</h3>
+                            <hr>
+                            <img src="{{ user.image.url }}" alt="" style="width: 150px; margin-bottom: 10px; border-radius: 10px;">
+                            <br>
+                            <table>
+                                <tr>
+                                    <td><p><strong> USER ID </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p class="btn btn-sm btn-success">{{ user.id }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Name </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p> <strong>{{ user.name }}</strong></p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> DOB </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.date_of_birth }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Mobile </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.user.username }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> District </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.district.name }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Thana </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.thana }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> ID Name </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.id_name }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> ID Number </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.id_number }}</p></td>  
+                                </tr>
+                            </table>
+                            <table style="bottom:0px;">
+                                <td><a href="" class="btn btn-sm btn-danger"> Delete User </a></td>
+                                
+                            </table>
+
+                            
+                        </div>
+                        <div class="col-6">
+                            <h3> Movement Pass Information</h3>
+                            <hr>
+                            <table>
+                                <tr class=" " style="">
+                                    <div style="background-color: rgb(214, 212, 212); border-radius: 10px; margin:2px;padding: 10px;">
+                                        <h3>{{ user.id }}</h3>{{ obj.id }}
+                                    </div>  
+                                </tr>
+                                {% for p in user.movementpass.all %}
+                                <tr>
+                                    <div style="background-color: rgb(214, 212, 212); border-radius: 10px; margin:2px;padding: 10px;">
+                                        <h3>{{ p.id }}</h3>
+                                    </div>  
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td><p><strong> From </strong></td>
+                                    <td><p><strong>:</strong></td>
+                                    <td><p><strong> {{ obj.from_m }} </strong>( {{ obj.sub_dristrict }} )<p</td>   
+                                </tr>
+                                <tr>
+                                    <td><p><strong> To </strong></td>
+                                    <td><p><strong>:</strong></td>
+                                    <td><p><strong> {{ obj.to_m }} </strong></td>   
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Movement Type </strong></td>
+                                    <td><p><strong>:</strong></td>
+                                        {% if obj.move.type == 'Only Go'%}
+                                    <td><p> One Way  </p></td>  
+                                        {% else %}
+                                    <td><p> Round Trip </p></td> 
+                                        {% endif %}
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Time From </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p> {{ obj.date }}</p></td>   
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Hours Spend </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p> {{ obj.time_spand }}</p></td>   
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Pass Reason </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p> {{ obj.reason }}</p></td>   
+                                </tr>
+                            </table>
+                            <table>
+                                <td><a href="" class="btn btn-sm btn-success"> Approve Pass </a></td>
+                                <td><a href="" class="btn btn-sm btn-info"> Make Expire</a></td>
+                                <td><a href="" class="btn btn-sm btn-warning">  Reject Pass </a></td>
+                                <td><a href="" class="btn btn-sm btn-danger"> Delete Pass </a></td>
+                                
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

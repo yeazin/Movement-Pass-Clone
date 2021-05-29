@@ -17,6 +17,8 @@ from django.contrib.auth.hashers import make_password
 # Register for Movement Pass
 class Register(View):
     def get(self,request,*args,**kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
         gender_obj = Gender.objects.all()
         district_obj = District.objects.all().order_by('name')
         id_obj = IDtype.objects.all()

@@ -35,6 +35,7 @@ class PassUser(models.Model):
     thana  = models.CharField(max_length=200, null=True, blank=True)
     id_name = models.ForeignKey(IDtype, on_delete=models.DO_NOTHING, verbose_name='Id Name Type')
     id_number = models.CharField(max_length=100, blank=False, null=True, verbose_name='Id Number')
+    created_at = models.DateField(auto_now_add=True,null=True)
     image = models.ImageField(upload_to = 'profile', null=True)
     is_admin = models.BooleanField(default=False)
     '''
