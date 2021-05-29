@@ -31,4 +31,16 @@ class Dashboard(View):
             'pending':total_pending_pass
         }
         return render (request,'sadmin/home/admin_dashboard.html',context)
+
+# All Pass view
+class AllPassView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
     
+    def get(self,request):
+        pass_obj = MovementPass.objects.all()
+        context={
+            'pass':pass_obj
+        }
+        return render (request,'sadmin/pass/all_pass.html',context)
