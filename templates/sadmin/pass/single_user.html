@@ -1,5 +1,5 @@
 {% extends 'sadmin/base/base.html' %}
-{% block title %}  | Movement Pass BD {% endblock %}
+{% block title %} {{ user.name }} | Movement Pass BD {% endblock %}
 
 {% block body %}
 <div class="row">
@@ -13,6 +13,7 @@
                             <hr>
                             <img src="{{ user.image.url }}" alt="" style="width: 150px; margin-bottom: 10px; border-radius: 10px;">
                             <br>
+                            
                             <table>
                                 <tr>
                                     <td><p><strong> USER ID </strong></p></td>
@@ -28,6 +29,11 @@
                                     <td><p><strong> DOB </strong></p></td>
                                     <td><p><strong>:</strong></p></td>
                                     <td><p>{{ user.date_of_birth }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Joined </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.created_at }}</p></td>  
                                 </tr>
                                 <tr>
                                     <td><p><strong> Mobile </strong></p></td>
@@ -63,63 +69,22 @@
                             
                         </div>
                         <div class="col-6">
-                            <h3> Movement Pass Information</h3>
+                            <h3> Movement Pass</h3>
                             <hr>
+                            {% if user_pass %}
                             <table>
-                                <tr class=" " style="">
-                                    <div style="background-color: rgb(214, 212, 212); border-radius: 10px; margin:2px;padding: 10px;">
-                                        <h3>{{ user.id }}</h3>{{ obj.id }}
-                                    </div>  
-                                </tr>
-                                {% for p in user.movementpass.all %}
+                                {% for p in user_pass %}
                                 <tr>
-                                    <div style="background-color: rgb(214, 212, 212); border-radius: 10px; margin:2px;padding: 10px;">
-                                        <h3>{{ p.id }}</h3>
+                                    <div style="background-color: rgb(243, 239, 239); border-radius: 10px; margin:2px;padding: 10px;">
+                                        <h6 style="color:black">Track ID : <strong>{{ p.id }}</strong></h6>
+                                        <p> From : {{ p.from_m }}-To : {{ p.to_m }} <a href="{% url 'single_pass' p.id %}"> View Pass</a> <i class="fas fa-caret-square-right"></i></p>
                                     </div>  
                                 </tr>
                                 {% endfor %}
-                                <tr>
-                                    <td><p><strong> From </strong></td>
-                                    <td><p><strong>:</strong></td>
-                                    <td><p><strong> {{ obj.from_m }} </strong>( {{ obj.sub_dristrict }} )<p</td>   
-                                </tr>
-                                <tr>
-                                    <td><p><strong> To </strong></td>
-                                    <td><p><strong>:</strong></td>
-                                    <td><p><strong> {{ obj.to_m }} </strong></td>   
-                                </tr>
-                                <tr>
-                                    <td><p><strong> Movement Type </strong></td>
-                                    <td><p><strong>:</strong></td>
-                                        {% if obj.move.type == 'Only Go'%}
-                                    <td><p> One Way  </p></td>  
-                                        {% else %}
-                                    <td><p> Round Trip </p></td> 
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td><p><strong> Time From </strong></p></td>
-                                    <td><p><strong>:</strong></p></td>
-                                    <td><p> {{ obj.date }}</p></td>   
-                                </tr>
-                                <tr>
-                                    <td><p><strong> Hours Spend </strong></p></td>
-                                    <td><p><strong>:</strong></p></td>
-                                    <td><p> {{ obj.time_spand }}</p></td>   
-                                </tr>
-                                <tr>
-                                    <td><p><strong> Pass Reason </strong></p></td>
-                                    <td><p><strong>:</strong></p></td>
-                                    <td><p> {{ obj.reason }}</p></td>   
-                                </tr>
                             </table>
-                            <table>
-                                <td><a href="" class="btn btn-sm btn-success"> Approve Pass </a></td>
-                                <td><a href="" class="btn btn-sm btn-info"> Make Expire</a></td>
-                                <td><a href="" class="btn btn-sm btn-warning">  Reject Pass </a></td>
-                                <td><a href="" class="btn btn-sm btn-danger"> Delete Pass </a></td>
-                                
-                            </table>
+                                {% else %}
+                                <h5> This User has not submitted any Movement Pass yet</h5>
+                            {% endif %}
                         </div>
                     </div>
                     

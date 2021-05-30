@@ -1,5 +1,5 @@
 from django import contrib
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 # models import 
 from fuser.models import *
@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
+from django.contrib import messages
 
 
 class Dashboard(View):
@@ -82,7 +83,61 @@ class SingleUser(View):
     
     def get(self,request,id):
         user_obj = get_object_or_404(PassUser,id=id)
+        user_pass_obj  = user_obj.movementpass_set.all().order_by('-id')
         context={
-            'user':user_obj
+            'user':user_obj,
+            'user_pass':user_pass_obj
         }
         return render(request,'sadmin/pass/single_user.html',context)
+
+### Condition Vews
+# approve views
+class MakeApprove(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,reqeust,id):
+        obj = get_object_or_404(MovementPass,id=id)
+        obj.is_approved == True
+        obj.save()
+        messages.success(request,'{obj.id} has been approved!!')
+        return redirect ('allpass')
+
+# Disapprove views 
+class MakeDisapprove(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,reqeust,id):
+        obj = get_object_or_404(MovementPass,id=id)
+        obj.is_approved == False
+        obj.save()
+        messages.success(request,'{obj.id} has been Disapproved!!')
+        return redirect ('allpass')
+
+# Exprires Views
+class MakeExpire(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,reqeust,id):
+        obj = get_object_or_404(MovementPass,id=id)
+        obj.is_expired == True
+        obj.save()
+        messages.success(request,'{obj.id} has been Expired!!')
+        return redirect ('allpass')
+
+# Delete Views
+class DeletePass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def post(self,reqeust,id):
+        obj = get_object_or_404(MovementPass,id=id)
+        obj.delete()
+        messages.warning(request,'{obj.id} has been Deleted!!')
+        return redirect ('allpass')
