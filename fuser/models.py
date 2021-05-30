@@ -49,9 +49,9 @@ class MovementPass(models.Model):
     id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
     from_m = models.CharField(max_length=200, blank=False, null=True, verbose_name='From Where')
     to_m = models.CharField(max_length=200, blank=False, null=True, verbose_name='To Where')
-    district = models.ForeignKey(District, on_delete=models.DO_NOTHING, verbose_name='District Name')
+    district = models.ForeignKey(District, on_delete=models.DO_NOTHING, verbose_name='District Name',null=True)
     sub_dristrict = models.CharField(max_length=200,verbose_name='Sub Dristrict Name', blank=True, null=True)
-    time_spand = models.ForeignKey(TimeSpend, on_delete=models.CASCADE, null=True, default=None)
+    time_spand = models.ForeignKey(TimeSpend, on_delete=models.CASCADE, null=True)
     move = models.ForeignKey(MoveType, on_delete=models.DO_NOTHING, null=True)
     date = models.DateTimeField(auto_now_add=True)
     take_car = models.ForeignKey(TakeCar, on_delete=models.DO_NOTHING, null=True)
@@ -63,7 +63,7 @@ class MovementPass(models.Model):
 
     def __str__(self):
         return f"{ self.reason } | {self.id}"
-
+   
     def save(self,*args,**kwargs):
         img = qrcode.make(self.id)
         canvas = Image.new('RGB',(290, 290),'white')
@@ -75,7 +75,7 @@ class MovementPass(models.Model):
         self.qr_image.save(frame,File(buffer),save=False)
         canvas.close()
         super().save(*args,**kwargs)
-
+        
 
 
 

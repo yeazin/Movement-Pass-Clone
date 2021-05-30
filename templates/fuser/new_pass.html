@@ -1,0 +1,141 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Apply | Movement Pass {% endblock %}
+
+{% block body %}
+
+<main id="main">
+    <section id="home" class="home" style="margin-top:50px">
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                                    <div class="card">
+                        <div class="card-header">Provide necessary information for movement pas</div>
+                        
+                        <div class="card-body">
+                            <form class="form-row" id="pass_form" action="{% url 'apply' %}" method="post"
+                                  enctype="multipart/form-data">
+                                                                {% csrf_token %}
+                                  <div class="form-group col-md-6">
+                                    <label for="from_destination">Location From <span class="text-danger">*</span></label>
+                                    <input type="text" value="" placeholder="Enter your location"
+                                           id="from_destination"
+                                           class="form-control "
+                                           name="from" required>
+                                                                    </div>
+                                <div class="form-group col-md-6">
+                                    <label for="to_destination">Where to go <span class="text-danger">*</span></label>
+                                    <input type="text" value="" placeholder="Enter your location"
+                                           id="to_destination"
+                                           class="form-control "
+                                           name="to" required>
+                                                                    </div>
+
+                
+                                <div class="form-group col-md-6">
+                                <label for="district">District of your destination <span class="text-danger">*</span></label>
+                                        <select class="district form-control "
+                                        name="district" placeholder=" Enter Your District Name">
+                                            <option value=""> Enter Your District Name </option>
+                                            {% for d in district %}
+                                            <option value="">{{ d }}</option>
+                                            {% endfor %}
+                                        </select>
+                                       
+                                
+                                                                </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="thana">Subdistrict at your destination<span
+                                        class="text-danger">*</span></label>
+                                        <input type="text" value="" placeholder="Subdistrict Name"
+                                        id="from_destination"
+                                        class="form-control "
+                                        name="subdistrict" required>
+                                                                 </div>
+                                           
+                                
+                                <div class="form-group col-md-6">
+                                <label for="pass_time">Please select a date and time for the Pass<span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                        </div>
+                                       <input type="datetime-local" class="form-control" name="date" id="">
+                                    </div>                    
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="duration">Set a time limit to stay out<span
+                                            class="text-danger">*</span></label>
+                                    <select  name="duration" 
+                                            class="form-control ">
+                                        <option value="" selected disabled>Select</option>
+                                                                                  {% for t in spend %}
+                                                                                  <option value="">{{ t }}</option>
+                                                                                  {% endfor %}
+                                                                            </select>
+                                                                    </div>
+                                
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="pass_reason">Movement Type <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <select  class="form-control " id="pass_reason"
+                                                                                name="move">
+                                                                            <option value="">Select Type</option>
+                                                                           {% for r in move %}
+                                                                           <option value=""> {{ r }}</option>
+                                                                           {% endfor %}
+                                                                        </select>
+                                                                    </div>                                                         
+
+                                <div class="form-group col-md-6">
+                                    <label for="pass_reason">Reason for the Movement Pass<span
+                                            class="text-danger">*</span></label>
+                                    <select  class="form-control " 
+                                            name="reason">
+                                        <option value="">Select Reason</option>
+                                       {% for r in reason %}
+                                       <option value=""> {{ r }}</option>
+                                       {% endfor %}
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group col-md-12">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary mt-2"><i class="bi bi-check2"></i> Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+
+    <style>
+    .consent_div {
+    display: flex;
+    }
+
+    .consent_div input {
+        margin: 0px;
+        margin-top:5px;
+    }
+
+    .consent_div label {
+        margin-left: 15px;
+        vertical-align: top;
+    }
+
+    </style>
+
+    </section>
+</main>
+{% endblock %}

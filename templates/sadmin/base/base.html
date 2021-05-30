@@ -22,7 +22,14 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-    <style>{% block custom_css %} {% endblock %}</style>
+    <style>
+    .bg-gradient-primary {
+    background-color: #3636e0;
+    background-image: linear-gradient(
+180deg
+,#38393c 10%,#003ff7 100%);
+    background-size: cover;
+    {% block custom_css %} {% endblock %}</style>
 
 </head>
 

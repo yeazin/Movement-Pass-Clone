@@ -1,4 +1,4 @@
-from django import contrib
+
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 # models import 

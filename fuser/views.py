@@ -163,7 +163,27 @@ class ApplyPass(View):
         }
         return render(request,'fuser/pass_apply.html', context)
 
-    def post(self,request,*args,**kwargs):
+    def post(self,request):
+        user = request.user.passuser 
+        from_m = request.POST.get('from')
+        to_m = request.POST.get('to')
+        #district_get = request.POST.get('district')
+        #district = District.objects.get(name=district_get)
+        subdistrict = request.POST.get('subdistrict')
+        date = request.POST.get('date')
+        #time_spand_obj = request.POST.get('district')
+        #time_spand = TimeSpend.objects.get(time=time_spand_obj)
+        #move_get = request.POST.get('move')
+        #move = MoveType.objects.get(type=move_get)
+        #reason_get = request.POST.get('reason')
+        #reason = MovementReason.objects.get(reason=reason_get)
+        movement_obj = MovementPass(user=user,from_m=from_m,to_m=to_m,\
+                #district=district,
+                #subdistrict=subdistrict,\
+                date=date,#move=move,reason=reason,
+                #time_spand=time_spand
+                )
+        movement_obj.save()
         return redirect('collect')
 
 # Collect Pass View
