@@ -64,8 +64,10 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         {%  url 'allpass' as url %}
                         <a class="collapse-item" href="{{ url }}"> All Pass </a>
-                        <a class="collapse-item" href="cards.html"> Approved Pass </a>
-                        <a class="collapse-item" href="cards.html"> Pending Pass </a>
+                        {%  url 'approved_pass' as url %}
+                        <a class="collapse-item" href="{{url}}"> Approved Pass </a>
+                        {%  url 'disapproved_pass' as url %}
+                        <a class="collapse-item" href="{{ url }}"> Pending Pass </a>
                     </div>
                 </div>
             </li>

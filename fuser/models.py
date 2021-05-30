@@ -29,8 +29,6 @@ class TakeCar(models.Model):
     def __str__(self):
         return self.name 
 
-
-
 # Subdistrict
 class Subdistrict(models.Model):
     district = models.ForeignKey(District, on_delete=models.DO_NOTHING, verbose_name='District Name')

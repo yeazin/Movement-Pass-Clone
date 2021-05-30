@@ -47,6 +47,45 @@ class AllPassView(View):
         }
         return render (request,'sadmin/pass/all_pass.html',context)
 
+# Approved pass Views
+class ViewApprovedPass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        approve_pass_obj = MovementPass.objects.filter(is_approved= True)
+        context = {
+            'approved_pass':approve_pass_obj
+        }
+        return render(request,'sadmin/pass/approved_pass.html',context)
+
+# Approved pass Views
+class ViewDisapprovedPass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        disapprove_pass_obj = MovementPass.objects.filter(is_approved= False)
+        context = {
+            'disapproved_pass':disapprove_pass_obj
+        }
+        return render(request,'sadmin/pass/disapproved_pass.html',context)
+
+# Exprired Pass Views
+class ViewExpiredPass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        expired_pass_obj = MovementPass.objects.filter(is_approved= False)
+        context = {
+            'expired_pass':expired_pass_obj
+        }
+        return render(request,'sadmin/pass/expired_pass.html',context)
+
 # single View of Movement Pass
 class SinglePass(View):
     @method_decorator(login_required(login_url='login'))
