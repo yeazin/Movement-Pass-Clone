@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 # models import 
 from .models import MovementReason,MovementPass, TimeSpend,\
-    MoveType, TakeCar 
+    MoveType
 from sadmin.models import IDtype, Gender, PassUser,District
 # essential imports
 from django.http import HttpResponseRedirect
@@ -12,6 +12,8 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+# forms import 
+from .forms import PassApplyForm
 
 
 # Register for Movement Pass
@@ -142,50 +144,30 @@ class Dashboard(View):
     def get(self,request,*args,**kwargs):
         return render(request,'fuser/dashboard.html')
 
+
 # Apply for Movement Pass
-class ApplyPass(View):
+class PassApply(View):
     @method_decorator(login_required(login_url='login'))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs) 
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
     def get(self,request):
-         
-        district_obj = District.objects.all().order_by('name')
-        reason_obj = MovementReason.objects.all().order_by('reason')
-        spend_obj  = TimeSpend.objects.all()
-        car_obj = TakeCar.objects.all()
-        move_obj = MoveType.objects.all()
-        context ={
-            'district':district_obj,
-            'reason':reason_obj,
-            'spend':spend_obj,
-            'car':car_obj,
-            'move':move_obj
-        }
-        return render(request,'fuser/pass_apply.html', context)
-
+        forms = PassApplyForm()
+        context = {
+            'forms':forms 
+        }  
+        return render(request, 'fuser/pass_apply.html', context)    
     def post(self,request):
-        user = request.user.passuser 
-        from_m = request.POST.get('from')
-        to_m = request.POST.get('to')
-        #district_get = request.POST.get('district')
-        #district = District.objects.get(name=district_get)
-        subdistrict = request.POST.get('subdistrict')
-        date = request.POST.get('date')
-        #time_spand_obj = request.POST.get('district')
-        #time_spand = TimeSpend.objects.get(time=time_spand_obj)
-        #move_get = request.POST.get('move')
-        #move = MoveType.objects.get(type=move_get)
-        #reason_get = request.POST.get('reason')
-        #reason = MovementReason.objects.get(reason=reason_get)
-        movement_obj = MovementPass(user=user,from_m=from_m,to_m=to_m,\
-                #district=district,
-                #subdistrict=subdistrict,\
-                date=date,#move=move,reason=reason,
-                #time_spand=time_spand
-                )
-        movement_obj.save()
-        return redirect('collect')
-
+        forms = PassApplyForm(request.POST)
+        if forms.is_valid:
+            obj = forms.save(commit=False)
+            # current user requirment 
+            obj.user = request.user.passuser 
+            obj.save()
+            return redirect('collect')
+        else:
+            messages.warning(request,'Please Fill Up the Form Again')
+            return redirect('apply')
 # Collect Pass View
 class CollectPass(View):
     @method_decorator(login_required(login_url='login'))
@@ -214,7 +196,7 @@ class ViewPass(View):
         }
         return render(request,'fuser/single_pass.html',context)
 
-        
+
 
 
 

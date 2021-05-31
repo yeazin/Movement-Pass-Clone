@@ -16,32 +16,27 @@ class TimeSpend(models.Model):
     
     def __str__(self):
         return self.time
+    class Meta:
+        verbose_name_plural ='Time Spending'
 
 class MoveType(models.Model):
-    type = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=50, null=True)
 
     def __str__(self):
-        return self.type 
+        return self.name
+        
+    class Meta:
+        verbose_name_plural = 'Movement Type'
 
-class TakeCar(models.Model):
-    name = models.CharField(max_length=20, null=True)
-
-    def __str__(self):
-        return self.name 
-
-# Subdistrict
-class Subdistrict(models.Model):
-    district = models.ForeignKey(District, on_delete=models.DO_NOTHING, verbose_name='District Name')
-    sub_name = models.CharField(max_length=100, verbose_name='Sub District Name' , blank=False, null=True)
-
-    def __str__(self):
-        return self.sub_name
 
 class MovementReason(models.Model):
     reason = models.CharField(max_length=200,blank=False, null=True)
 
     def __str__(self):
         return self.reason
+    
+    class Meta:
+        verbose_name_plural = 'Movement Reason'
 
 # Movement Pass Model
 class MovementPass(models.Model):
@@ -51,11 +46,11 @@ class MovementPass(models.Model):
     to_m = models.CharField(max_length=200, blank=False, null=True, verbose_name='To Where')
     district = models.ForeignKey(District, on_delete=models.DO_NOTHING, verbose_name='District Name',null=True)
     sub_dristrict = models.CharField(max_length=200,verbose_name='Sub Dristrict Name', blank=True, null=True)
-    time_spand = models.ForeignKey(TimeSpend, on_delete=models.CASCADE, null=True)
+    time_spand = models.ForeignKey(TimeSpend, on_delete=models.DO_NOTHING, null=True)
     move = models.ForeignKey(MoveType, on_delete=models.DO_NOTHING, null=True)
-    date = models.DateTimeField(auto_now_add=True)
-    take_car = models.ForeignKey(TakeCar, on_delete=models.DO_NOTHING, null=True)
-    car_number = models.CharField(max_length=100, null=True, blank=True, verbose_name='Car Number')
+    date = models.DateTimeField()
+    #take_car = models.ForeignKey(TakeCar, on_delete=models.DO_NOTHING, null=True)
+    #car_number = models.CharField(max_length=100, null=True, blank=True, verbose_name='Car Number')
     reason = models.ForeignKey(MovementReason, on_delete=models.DO_NOTHING, null=True)
     qr_image = models.ImageField(upload_to='qr/',null=True,blank=True)
     is_approved = models.BooleanField(default=False)
@@ -75,8 +70,10 @@ class MovementPass(models.Model):
         self.qr_image.save(frame,File(buffer),save=False)
         canvas.close()
         super().save(*args,**kwargs)
-        
 
+    class Meta:
+        verbose_name_plural = 'Movement Pass'
+        verbose_name = 'Movement Pass'
 
 
 
