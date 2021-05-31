@@ -49,9 +49,27 @@ and (max-device-width: 1024px) {
 
 <main id="main">
     <section id="home" class="home" style="margin-top:50px">
+
+        {% if messages %}
+        <div class="messages" style="width: 50%; margin:0 auto;" >
+            {% for message in messages %}
+                <div class="alert alert-primary" {% if message.tags %}
+                    class="{{ message.tags }}"{% endif %}>{{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="container margin-top" style="margin-top:20px;">
         <div class="row">
             <div class="col-lg-4 col-sm-12 col-md-12">
+
+
+
                 <div class="text-center">
                         {% load static %}
                         {% if user.passuser.image %}

@@ -1,9 +1,10 @@
 from django import forms
+from django.forms import ModelForm
 from django.forms import fields, widgets
 from .models import MovementPass
 
 
-class PassApplyForm(forms.ModelForm):
+class PassApplyForm(ModelForm):
     
     class Meta:
         model = MovementPass
