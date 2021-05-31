@@ -55,6 +55,7 @@ class MovementPass(models.Model):
     qr_image = models.ImageField(upload_to='qr/',null=True,blank=True)
     is_approved = models.BooleanField(default=False)
     is_expired = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_created=True, null=True)
 
     def __str__(self):
         return f"{ self.reason } | {self.id}"

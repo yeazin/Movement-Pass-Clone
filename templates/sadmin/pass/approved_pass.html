@@ -1,2 +1,45 @@
 {% extends 'sadmin/base/base.html' %}
 {% block title %} Approved Movement Pass | Movement Pass BD {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Approved Movement Pass</h4>
+           <!-- <div class="right" style="float: right;"><a href="" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Add Movement Pass </a></div> -->
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            
+                            <th> Tracking ID </th>
+                            <th> User Name </th>
+                            <th> Apply Date & Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in approved_pass %}
+                        <tr>
+                            <td><strong>{{ p.id }}</strong></td>
+                            <td><p>{{ p.user.name }}</p></td>
+                            <td>{{ p.created_at }}</td>
+                            
+                            <td><a href="{% url 'single_pass' p.id %}"> <i class="fa fa-eye"></i> </a></td>
+                        </tr>
+                        {% endfor %}
+                      
+                    </tbody>
+                </table>
+              </div> 
+        </div> 
+    </div>
+
+</div>
+{% endblock %}

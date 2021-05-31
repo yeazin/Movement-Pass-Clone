@@ -136,7 +136,7 @@ class MakeApprove(View):
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
 
-    def get(self,reqeust,id):
+    def get(self,request,id):
         obj = get_object_or_404(MovementPass,id=id)
         obj.is_approved == True
         obj.save()
@@ -149,7 +149,7 @@ class MakeDisapprove(View):
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
 
-    def get(self,reqeust,id):
+    def get(self,request,id):
         obj = get_object_or_404(MovementPass,id=id)
         obj.is_approved == False
         obj.save()
@@ -162,7 +162,7 @@ class MakeExpire(View):
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
 
-    def get(self,reqeust,id):
+    def get(self,request,id):
         obj = get_object_or_404(MovementPass,id=id)
         obj.is_expired == True
         obj.save()
@@ -175,7 +175,7 @@ class DeletePass(View):
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
 
-    def post(self,reqeust,id):
+    def post(self,request,id):
         obj = get_object_or_404(MovementPass,id=id)
         obj.delete()
         messages.warning(request,'{obj.id} has been Deleted!!')
