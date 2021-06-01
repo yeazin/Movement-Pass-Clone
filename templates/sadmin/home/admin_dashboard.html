@@ -1,5 +1,16 @@
 {% extends 'sadmin/base/base.html' %}
 {% block title %} Dashboard | Movement Pass BD {% endblock %}
+{% block custom_css %}
+.border-left{
+    border-left:.25rem solid #0a3d62 !important;
+}
+.district{
+    border-left:.25rem solid #9b59b6 !important;
+}
+.time{
+    border-left:.25rem solid #55E6C1 !important;
+}
+{% endblock %}
 {% block body %}
 <div class="row">
 
@@ -46,12 +57,12 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             Total Approved Pass </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ approved }}</div>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <i class="fas fa-thumbs-up fa-2x"></i>
+                                                        <i class="fas fa-thumbs-up fa-2x text-info"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,12 +75,12 @@
                                                                                 <div class="card-body">
                                                                                     <div class="row no-gutters align-items-center">
                                                                                         <div class="col mr-2">
-                                                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                                                                 New Pending Pass </div>
                                                                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ pending }}</div>
                                                                                         </div>
                                                                                         <div class="col-auto">
-                                                                                            <i class="fas fa-thumbs-down fa-2x" ></i>
+                                                                                            <i class="fas fa-thumbs-down fa-2x text-warning" ></i>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -84,7 +95,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                    New Expired Pass</div>
-                                                <div class="h5 mb-0 font-weight-bold text-red-800">{{ total_pass }}</div>
+                                                <div class="h5 mb-0 font-weight-bold text-red-800">{{ total_expired }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 
@@ -98,17 +109,17 @@
 
                              <!-- Total Movement Reasons -->
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card border-left shadow h-100 py-2" >
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:#0a3d62;">
                                                     Mevement Reasons </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_pass }}</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_reason }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 
-                                                <i class="fas fa-archive fa-2x " style="color: green;"></i>
+                                                <i class="fas fa-archive fa-2x " style="color:#0a3d62;"></i>
                                                 
                                             </div>
                                         </div>
@@ -118,17 +129,17 @@
 
                                  <!-- Distrcit Register -->
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card district shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:#9b59b6;">
                                                     Total District</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_pass }}</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ district }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 
-                                                <i class="fas fa-globe-asia fa-2x"></i>
+                                                <i class="fas fa-globe-asia fa-2x" style="color:#9b59b6;"></i>
                                                 
                                             </div>
                                         </div>
@@ -138,23 +149,97 @@
 
 
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card time shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Movement Pass</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_pass }}</div>
+                                                <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:#55E6C1">
+                                                    Time Hours</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ time }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 
-                                                <i class="fas fa-archive fa-2x " style="color: green;"></i>
+                                                <i class="fas fa-hourglass-start fa-2x" style="color:#55E6C1"></i>
                                                 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
 </div>
+                <!-- 2nd sections -->
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="card shadow mb-4">
+                        <!-- Default Card Example -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="text-primary m-0 font-weight-bold"> Recent Registered Users</h5>
+                            </div>
+                            <div class="card-body">
+                                    <table class="table table-bordered"  width="100%" cellspacing="0">
+                                        <thead>
+                                            <th>SL</th>
+                                            <th> Joined at</th>
+                                            <th> Name</th>
+                                        </thead>
+                                        <tbody>
+                                            {% for r in recent_users %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td> {{ r.created_at  }}</td>
+                                                <td> {{ r.name }} | <a href="{% url 'single_user' r.id %}"> <i class="fa fa-eye"></i> </a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+
+
+                                    </table>
+                                    <a href="{% url 'all_users' %}" class="btn btn-dark btn-sm btn-block"> View All Users </a>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card shadow mb-4">
+                        <!-- Default Card Example -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="text-primary m-0 font-weight-bold">Newly Applied Movement Pass</h5>
+                            </div>
+                            <div class="card-body">
+                                    <table class="table table-bordered"  width="100%" cellspacing="0">
+                                        <thead>
+                                            
+                                            <th> Track ID</th>
+                                            <th> Status </th>
+                                        </thead>
+                                        <tbody>
+                                            {% for r in recent_pass %}
+                                            <tr>
+                                                
+                                                <td><a href="{% url 'single_pass' r.id %}">{{ r.id  }}</a> </td>
+                                                {% if r.is_approved == True %}
+                                                <td> Approved</td>
+                                                {% else %}
+                                                <td>Pending</td>
+                                                {% endif %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <a href="{% url 'allpass' %}" class="btn btn-dark btn-sm btn-block"> View All Movement Pass </a>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+            </div>
+
                                     
 {% endblock %}

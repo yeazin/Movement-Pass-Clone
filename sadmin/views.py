@@ -25,11 +25,23 @@ class Dashboard(View):
         total_pass = pass_obj.count()
         total_approved_pass = pass_obj.filter(is_approved=True).count()
         total_pending_pass = pass_obj.filter(is_approved=False).count()
+        total_expired_pass = pass_obj.filter(is_expired = True ).count()
+        total_district = District.objects.all().count()
+        total_time = TimeSpend.objects.all().count()
+        total_reason = MovementReason.objects.all().count()
+        recent_users = PassUser.objects.all().order_by('-created_at')[:5]
+        recent_pass = MovementPass.objects.all().order_by('-id')[:5]
         context = {
             'total_user':total_user,
             'total_pass':total_pass,
             'approved':total_approved_pass,
-            'pending':total_pending_pass
+            'pending':total_pending_pass,
+            'total_expired':total_expired_pass,
+            'total_reason':total_reason,
+            'district':total_district,
+            'time':total_time,
+            'recent_users':recent_users,
+            'recent_pass':recent_pass
         }
         return render (request,'sadmin/home/admin_dashboard.html',context)
 
