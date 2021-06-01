@@ -19,15 +19,15 @@
     {% endif %}
 
     <div class="card shadow mb-4 py-3 " >
-        <form action="{% url 'reason' %}" method="POST" class="align-items-center">
+        <form action="{% url 'district' %}" method="POST" class="align-items-center">
             {% csrf_token %}
             <div class="row">
                 <div class="col-8 p-3">
-                    <input type="text"  style="width:85%; float: right;" name="reason" id="" class="form-control" placeholder="Add Movement Reasons" required>
+                    <input type="text"  style="width:85%; float: right;" name="district" id="" class="form-control" placeholder="Add District" required>
                 </div>
             
             <div class="col-4 p-3">
-                <button class="btn  btn-primary" type="submit"> Add Reasons</button>
+                <button class="btn  btn-primary" type="submit"> Add District</button>
             </div>
         </div> 
         </form>
@@ -41,18 +41,18 @@
                 <thead>
                     <tr>
                         <th> SL </th>
-                        <th>Reason Name</th>
+                        <th>District Name</th>
                         <th> Delete </th>
                     </tr>
                 </thead>
 
                 <tbody>
-                   {% for r in reason %}
+                   {% for r in district %}
                     <tr>
                       <td>{{ forloop.counter }}</td>
                         <td>{{ r }}</td>
                         <td>
-                          <form action="{% url 'delete_reason' r.id %}" method="POST">
+                          <form action="{% url 'delete_district' r.id %}" method="POST">
                             {% csrf_token %}
                             <button type="submit" style="background: transparent; border: none;"><i class="fa fa-trash" style="color:red" ></i></button>
                           </form>

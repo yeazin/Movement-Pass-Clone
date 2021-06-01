@@ -1,4 +1,3 @@
-
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 # models import 
@@ -209,5 +208,69 @@ class DeleteMovementReasonView(View):
     def post(self,request,id):
         reason_obj = get_object_or_404(MovementReason,id=id)
         reason_obj.delete()
-        messages.warning(request,'has been deleted')
-        return redirect('dashboard')
+        messages.warning(request, ' The reason has been deleted')
+        return redirect('reason')
+
+# District Views
+class DistrictView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        district_obj = District.objects.all().order_by('name')
+        context ={
+            'district':district_obj
+        }
+        return render(request,'sadmin/district/district.html',context)
+    
+    def post(self,request):
+        distict_obj = request.POST.get('district')
+        district = District(name=distict_obj)
+        district.save(distict_obj)
+        messages.success(request,'District Has Been Added')
+        return redirect('district')
+
+# Delete District 
+class DeleteDistrict(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def post(self, request,id):
+        district_obj = get_object_or_404(District, id=id)
+        district_obj.delete()
+        messages.warning(request,'The District has been deleted')
+        return redirect('district')
+
+# Time spends Views
+class TimeSpendsView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        time_obj = TimeSpend.objects.all()
+        context ={
+            'time':time_obj
+        }
+        return render(request,'sadmin/time/time.html', context)
+        
+    def post(self, request):
+        time_get = request.POST.get('time')
+        time = TimeSpend(time=time_get)
+        time.save(time_get)
+        messages.success(request,'Time Hours Has Been Added')
+        return redirect('time')
+
+# Delete time Spends
+class DeleteTime(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def post(self,request,id):
+        time_get= get_object_or_404(TimeSpend,id=id)
+        time_get.delete()
+        messages.warning(request,'Time Hour has been deleted')
+        return redirect('time')

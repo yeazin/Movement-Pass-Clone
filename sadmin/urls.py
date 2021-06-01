@@ -22,4 +22,10 @@ urlpatterns = [
 
     path('movement-pass/view/movement-reasons/',views.MovementReasonView.as_view(), name='reason'),
     path('movement-pass/view/movement-reasons/delete/<str:id>/', views.DeleteMovementReasonView.as_view(), name='delete_reason'),
+
+    path('movement-pass/view/district/', views.DistrictView.as_view(), name='district'),
+    path('movement-pass/delete/district/<str:id>',views.DeleteDistrict.as_view(),name='delete_district'),
+
+    path('movement-pass/view/time-hours/', views.TimeSpendsView.as_view(), name='time'),
+    path('movement-pass/delete/time-hours/<str:id>', views.DeleteTime.as_view(), name='delete_time'),
 ]
