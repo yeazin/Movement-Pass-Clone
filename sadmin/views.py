@@ -180,3 +180,34 @@ class DeletePass(View):
         obj.delete()
         messages.warning(request,'{obj.id} has been Deleted!!')
         return redirect ('allpass')
+
+# Movement Reason 
+class MovementReasonView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def get(self,request):
+        reason_obj = MovementReason.objects.all().order_by('-id')
+        context ={
+            'reason':reason_obj
+        }
+        return render (request,'sadmin/reason/reason.html', context)
+    def post(self,request):
+        reason = request.POST.get('reason')
+        reason_get = MovementReason(reason=reason)
+        reason_get.save(reason_get)
+        messages.success(request,'New Movement Reason has been added')
+        return redirect('reason')
+
+# Delete Movement Reason 
+class DeleteMovementReasonView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def post(self,request,id):
+        reason_obj = get_object_or_404(MovementReason,id=id)
+        reason_obj.delete()
+        messages.warning(request,'has been deleted')
+        return redirect('dashboard')

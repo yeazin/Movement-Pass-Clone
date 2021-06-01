@@ -1,3 +1,4 @@
+from fuser.models import MovementReason
 from django.urls import path
 from . import views
 
@@ -18,4 +19,7 @@ urlpatterns = [
     path('movement-pass/<str:id>/disapproved/',views.MakeDisapprove.as_view(), name='disapproved'),
     path('movement-pass/<str:id>/expired/',views.MakeExpire.as_view(), name='expired'),
     path('movement-pass/<str:id>/Delete/', views.DeletePass.as_view(), name='deleted'),
+
+    path('movement-pass/view/movement-reasons/',views.MovementReasonView.as_view(), name='reason'),
+    path('movement-pass/view/movement-reasons/delete/<str:id>/', views.DeleteMovementReasonView.as_view(), name='delete_reason'),
 ]

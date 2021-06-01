@@ -33,7 +33,7 @@ class MovementReason(models.Model):
     reason = models.CharField(max_length=200,blank=False, null=True)
 
     def __str__(self):
-        return self.reason
+        return str(self.reason)
     
     class Meta:
         verbose_name_plural = 'Movement Reason'
