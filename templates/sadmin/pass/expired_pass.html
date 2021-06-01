@@ -1,2 +1,67 @@
 {% extends 'sadmin/base/base.html' %}
-{% block title %} Expired Movement Pass | Movement Pass BD {% endblock %}
+{% block title %} Approved Movement Pass | Movement Pass BD {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Expired Movement Pass</h4>
+           <!-- <div class="right" style="float: right;"><a href="" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Add Movement Pass </a></div> -->
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            
+                            <th> Tracking ID </th>
+                            <th> User Name </th>
+                            <th> Apply Date & Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in expired_pass %}
+                        <tr>
+                            <td><strong>{{ p.id }}</strong></td>
+                            <td><p>{{ p.user.name }}</p></td>
+                            <td>{{ p.created_at }}</td>
+                            
+                            <td><a href="{% url 'single_pass' p.id %}"> <i class="fa fa-eye"></i> </a>
+                                <a href=" " data-toggle="modal" data-target="#deleteModal{{ p.id }}" style="color:red" area-controls = 'deleteModal{{ p.id }}' ><i class="fa fa-trash"></i> </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                      
+                    </tbody>
+                </table>
+              </div> 
+        </div> 
+    </div>
+
+</div>
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal{{ p.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{ p.id }}Label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Are you sure you want to delete {{ p.id }} ?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href=" "> Delete </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -21,12 +21,13 @@
                                             <thead>
                                                 <tr>
                                                     
-                                                    <th> Name </th>
+                                                    <th>User Name </th>
                                                     <th>From</th>
                                                     <th>To</th>
                                                     <th> Tracking ID </th>
-                                                    <th>Hours</th>
+                                                    
                                                     <th>Status</th>
+                                                    <th>View</th>
                                                 </tr>
                                             </thead>
 
@@ -38,8 +39,13 @@
                                                     <td> {{ p.from_m }}</td>
                                                     <td>{{ p.to_m }}</td>
                                                     <td> {{ p.id }}</td>
-                                                    <td> {{ p.time_spand }}</td>
-                                                    <td> {{ p.is_expired }}</td>
+                                                    
+                                                    {% if p.is_approved == True %}
+                                                    <td> Approved </td>
+                                                    {% else %}
+                                                    <td> Pending </td>
+                                                    {% endif %}
+                                                    <td> <a href="{% url 'single_pass' p.id %}"><i class="fa fa-eye"></i></a></td>
                                                 </tr>
                                                 {% endfor %}
                                               

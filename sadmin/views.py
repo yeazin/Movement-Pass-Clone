@@ -80,7 +80,7 @@ class ViewExpiredPass(View):
         return super().dispatch(request,*args,**kwargs)
 
     def get(self,request):
-        expired_pass_obj = MovementPass.objects.filter(is_approved= False)
+        expired_pass_obj = MovementPass.objects.filter(is_expired = True)
         context = {
             'expired_pass':expired_pass_obj
         }
