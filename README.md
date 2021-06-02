@@ -35,7 +35,11 @@
     * For Linux/Mac <code>python3 manage.py runserver</code>
 
 ### Project Details & Features with Images
-This clone project has been made for learning perpose.Project has Three Different Types of Users <br>
+This clone project has been made for learning perpose.
+#### Project Flow :- 
+Frontend users create movement pass to go outside without any problem facing.__First__ the user register or login to the site. Then apply for movement pass. __Second__ the backand admin will apporve the pass if the application is valid.Otherwise the admin can delete the pass.__Third__ the front user can see their applied pass in their __Dashboard__. When a pass is created by a user the appilcation automatically generates a __QR-Code__ Image as well as a __Tracking ID__ instant.__Fourth__ The front user can download the pass only when the admin approve the pass.Otherwise it will show an error.__Fifth__ The user can download the pass as __PDF__ and print it.
+This is main __concept__ of the project. IF you want to explore more please Download the code on your local Machine and run . 
+<br> The Project has Three Different Types of Users <br>
 
 * Custom made __Admin__ 
 * Normal __Users__    &
@@ -117,4 +121,4 @@ __Linkedin :__ [Yea Sin](https://www.linkedin.com/in/yeazin/)
 <br>
 <br>
 
-[Go To Top ↑ ](#multiblogs---multi-authors-blog-project-in-djangopython)  
+[Go To Top ↑ ](#movement-pass-clone)  
