@@ -1,5 +1,5 @@
 ##  Movement Pass Clone 
-#### Navigation : [Built with](#technology-used---)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features](#project-features---)--[Project Images](#project-images)--[Issues](#issues--questions)--[Disclaimer](#)--[Ower Info ](#repository-owner-info) 
+#### Navigation : [Built with](#technologies-built-with----)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features & Details ](#project-details--features-with-images)--[Issues](#issues--questions)--[Disclaimer](#disclaimer)--[Ower Info ](#repository-owner-info) 
 
 #### Orginal Website : - [Movement Pass Bangladesh](https://movementpass.police.gov.bd/)
 ![original](readme/original.png)
@@ -71,8 +71,24 @@ __User has custom made admin template . with this admin area__ an admin can do m
 ![original](readme/reason.png)
 * __Can add/Delete Time spendng Options__
 ![original](readme/time.png)
-
 * __Can Delete Movement Pass__
+
+__That`s the features of Admin Panel__ . If you want see the live action on your desktop/laptop. Please download the [code](https://github.com/yeazin/Movement-Pass-Clone) and Read the [Instruction here](#how-to-setup-in-windowsmaclinux).__Now__ Lets have a look at the Frontend User option. <br>
+#### The features of frontend user __has given below :-__ 
+* __User can __Register__ .__
+![original](readme/register.png)
+* __User can LogIN with their __Phone Number__.__
+![original](readme/login.png)
+* __User can Edit their Profile__
+![original](readme/edit.png)
+* __User can create Movement Pass__
+![original](readme/apply.png)
+* __User can see their applied Movement Pass__
+![original](readme/collect.png)
+* __User can View Movement Pass when they are Approved by Admin.__
+![original](readme/see.png)
+* __User can Download the Movement Pass.__
+![original](readme/pdf.png)
 
 
 
