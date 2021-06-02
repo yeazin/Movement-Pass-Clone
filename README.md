@@ -1,9 +1,9 @@
 ##  Movement Pass Clone 
-#### Navigation : [Technology](#technology-used---)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features](#project-features---)--[Project Images](#project-images)--[Issues](#issues--questions)--[Disclaimer](#)--[Ower Info ](#repository-owner-info) 
+#### Navigation : [Built with](#technology-used---)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features](#project-features---)--[Project Images](#project-images)--[Issues](#issues--questions)--[Disclaimer](#)--[Ower Info ](#repository-owner-info) 
 
-  
 #### Orginal Website : - [Movement Pass Bangladesh](https://movementpass.police.gov.bd/)
-### Technology Used : -
+![original](media/readme/original.png)
+### Technologies Built with  : -
 1. [Django](https://www.djangoproject.com/). A is a high-level Web framework that encourages rapid development and clean, pragmatic design.( Used as Backend )
 2. [Datatables ](https://datatables.net/). An advanced Interaction controls to HTML Tables in Free and Easy way. 
 3. HTML, CSS
@@ -33,6 +33,9 @@
 8. Finally Run the Projects :-
     * For Windows <code>py manage.py runserver</code>
     * For Linux/Mac <code>python3 manage.py runserver</code>
+
+### Project Details & Features with Images
+
 
 ### Issues & Questions
 This project is scaleble.Anyone can contribute here.Anyone can use it as it is Under __MIT License__ .<br>
