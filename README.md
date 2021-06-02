@@ -44,7 +44,7 @@ This clone project has been made for learning perpose.Project has Three Differen
 __Each User__ has their own Dashboard.Below I will discuss further .
 #### __Custom Admin__ Features : -
 ![original](readme/admin-area.png)
-__User has custom made admin template . with this admin area__
+__User has custom made admin template . with this admin area__ an admin can do many things.All the features showing with images below. 
 * __View all Movement Pass__ 
 ![original](readme/all-pass.png)
 * __View all Approve Movement Pass__
@@ -58,7 +58,21 @@ __User has custom made admin template . with this admin area__
 * __Can make Search in admin area__
 ![original](readme/search.png)
 ![original](readme/search-out.png)
-* Can Delete Movement Pass
+* __Can see Single Movement Pass__
+![original](readme/single-reason.png)
+* __Can Approve Movement Pass__
+* __Can Disapprove Movement Pass__
+* __Can make a movement pass Expired__
+* __Can see Single User__
+![original](readme/single-user.png)
+* __Can add/Delete District__
+![original](readme/district.png)
+* __Can add/Delete Movement Reason__
+![original](readme/reason.png)
+* __Can add/Delete Time spendng Options__
+![original](readme/time.png)
+
+* __Can Delete Movement Pass__
 
 
 
