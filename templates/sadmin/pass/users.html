@@ -21,19 +21,19 @@
                             <th> Name </th>
                             <th> User ID </th>
                             <th> Phone </th>
-                            <th> Total Pass </th>
+                            <th> Joined</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for p in all_users %}
                         <tr>
-                            <td><a href="{% url 'single_user' p.id %}">{{ p.name }}</a></td>
-                            <td> <p class="btn btn-sm btn-dark">{{ p.id }}</p></td>
+                            <td>{{ p.name }}</td>
+                            <td> <strong> {{ p.id }}</strong></td>
                             
                             <td>+88 {{ p.user.username }}</td>
-                            <td>  </td>
-                            <td> </td>
+                            <td> {{ p.created_at }}</td>
+                            <td><a href="{% url 'single_user' p.id %}"><i class="fa fa-eye"></i> </a></td>
                         </tr>
                         {% endfor %}
                       

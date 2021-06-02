@@ -4,6 +4,21 @@
 {% block body %}
 <div class="row">
     <div class="col">
+
+        {% if messages %}
+        <div class="messages" >
+          {% for message in messages %}
+              <div class="alert alert-primary" {% if message.tags %}
+                   class="{{ message.tags }}"{% endif %}>{{ message }}
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+              </div>
+        
+          {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="card shadow mb-4">
             <div class="row " style="padding: 10px;">
                 <div class="col-10 mx-auto">
@@ -50,8 +65,7 @@
                                 </tr>
                             </table>
                             <table style="bottom:0px;">
-                                <td><a href="" class="btn btn-sm btn-danger"> Delete User </a></td>
-                                
+                                <td><a href="{% url 'single_user' obj.user.id %}" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> View User</a></td>  
                             </table>
 
                             
@@ -106,10 +120,18 @@
                                 </tr>
                             </table>
                             <table>
-                                <td><a href="" class="btn btn-sm btn-success"> Approve Pass </a></td>
-                                <td><a href="" class="btn btn-sm btn-info"> Make Expire</a></td>
-                                <td><a href="" class="btn btn-sm btn-warning">  Reject Pass </a></td>
-                                <td><a href="" class="btn btn-sm btn-danger"> Delete Pass </a></td>
+                                {% if obj.is_approved == True %}
+                                <td><a href="{% url 'disapproved' obj.id %}" class="btn btn-sm btn-dark"> Disapprove Pass </a></td>
+                                {% else %}
+                                <td><a href="{% url 'approved' obj.id %}" class="btn btn-sm btn-success"> Approve Pass </a></td>
+                                {% endif %}
+                                {% if obj.is_expired == True %}
+                                <td><a href="#" class="btn btn-sm btn-danger">Expired</a></td>
+                                {% else %}
+                                <td><a href="{% url 'expired' obj.id %}" class="btn btn-sm btn-warning"> Make Expire</a></td>
+                                {% endif %}
+                                
+                                <td><a href="" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete"> Delete Pass </a></td>
                                 
                             </table>
                         </div>
@@ -121,4 +143,29 @@
     </div>
 </div>
 
+
+<!-- Modal now -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4> Are You Sure,You want to Delete the Movement Pass ?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{% url 'deleted' obj.id %}" method="POST">
+              {% csrf_token %}
+            
+            <input type="submit" class="btn btn-danger" placeholder="Delete">
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -149,11 +149,12 @@ class MakeApprove(View):
         return super().dispatch(request,*args,**kwargs)
 
     def get(self,request,id):
-        obj = get_object_or_404(MovementPass,id=id)
+        obj = MovementPass.objects.get(id=id)
         obj.is_approved == True
         obj.save()
-        messages.success(request,'{obj.id} has been approved!!')
-        return redirect ('allpass')
+        messages.success(request,'Pass has been approved!!')
+        # Redirect To the Same Page
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # Disapprove views 
 class MakeDisapprove(View):
@@ -162,11 +163,12 @@ class MakeDisapprove(View):
         return super().dispatch(request,*args,**kwargs)
 
     def get(self,request,id):
-        obj = get_object_or_404(MovementPass,id=id)
+        obj = MovementPass.objects.get(id=id)
         obj.is_approved == False
         obj.save()
-        messages.success(request,'{obj.id} has been Disapproved!!')
-        return redirect ('allpass')
+        messages.success(request,'Pass has been Disapproved!!')
+         # Redirect To the Same Page
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # Exprires Views
 class MakeExpire(View):
@@ -175,11 +177,12 @@ class MakeExpire(View):
         return super().dispatch(request,*args,**kwargs)
 
     def get(self,request,id):
-        obj = get_object_or_404(MovementPass,id=id)
+        obj = MovementPass.objects.get(id=id)
         obj.is_expired == True
         obj.save()
-        messages.success(request,'{obj.id} has been Expired!!')
-        return redirect ('allpass')
+        messages.success(request,'Pass has been Expired!!')
+        # Redirect To the Same Page
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # Delete Views
 class DeletePass(View):
@@ -190,7 +193,7 @@ class DeletePass(View):
     def post(self,request,id):
         obj = get_object_or_404(MovementPass,id=id)
         obj.delete()
-        messages.warning(request,'{obj.id} has been Deleted!!')
+        messages.warning(request,'The pass has been Deleted!!')
         return redirect ('allpass')
 
 # Movement Reason 

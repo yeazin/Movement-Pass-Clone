@@ -6,7 +6,7 @@
     <div class="col">
         <div class="card shadow mb-4">
             <div class="row " style="padding: 10px;">
-                <div class="col-10 mx-auto">
+                <div class="col-11 mx-auto">
                     <div class="row">
                         <div class="col-6">
                             <h3> User Information</h3>
@@ -18,7 +18,7 @@
                                 <tr>
                                     <td><p><strong> USER ID </strong></p></td>
                                     <td><p><strong>:</strong></p></td>
-                                    <td><p class="btn btn-sm btn-success">{{ user.id }}</p></td>  
+                                    <td><p>{{ user.id }}</p></td>  
                                 </tr>
                                 <tr>
                                     <td><p><strong> Name </strong></p></td>
@@ -61,10 +61,6 @@
                                     <td><p>{{ user.id_number }}</p></td>  
                                 </tr>
                             </table>
-                            <table style="bottom:0px;">
-                                <td><a href="" class="btn btn-sm btn-danger"> Delete User </a></td>
-                                
-                            </table>
 
                             
                         </div>
@@ -75,7 +71,7 @@
                             <table>
                                 {% for p in user_pass %}
                                 <tr>
-                                    <div style="background-color: rgb(243, 239, 239); border-radius: 10px; margin:2px;padding: 10px;">
+                                    <div style="background-color:white; border-radius: 10px; margin-bottom:10px;padding: 10px;box-shadow: 1px 2px 5px 1px #dedbdb;">
                                         <h6 style="color:black">Track ID : <strong>{{ p.id }}</strong></h6>
                                         <p> From : {{ p.from_m }}-To : {{ p.to_m }} <a href="{% url 'single_pass' p.id %}"> View Pass</a> <i class="fas fa-caret-square-right"></i></p>
                                     </div>  
