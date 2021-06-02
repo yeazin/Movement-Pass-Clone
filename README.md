@@ -1,5 +1,5 @@
 ##  Movement Pass Clone 
-#### Navigation : [Technology](#technology-used---)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features](#project-features---)--[Project Images](#project-images)--[Issues](#issues--questions)--[Ower Info ](#repository-owner-info) 
+#### Navigation : [Technology](#technology-used---)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features](#project-features---)--[Project Images](#project-images)--[Issues](#issues--questions)--[Disclaimer](#)--[Ower Info ](#repository-owner-info) 
 
   
 #### Orginal Website : - [Movement Pass Bangladesh](https://movementpass.police.gov.bd/)
@@ -13,7 +13,7 @@
 1. For Frontend , We clone the [original website](http://movementpass.police.gov.bd/) of Movement pass BD. 
 2. For Frontend User Admin Panel, SB Admin 2 .
 
-#### Download both templates from below : -
+#### Download the template from below : -
 * Frontend User Admin Panel [ SB Admin 2 ](https://startbootstrap.com/theme/sb-admin-2).
 
 ### How to SETup in Windows/MAC/Linux
@@ -36,9 +36,13 @@
 
 ### Issues & Questions
 This project is scaleble.Anyone can contribute here.Anyone can use it as it is Under __MIT License__ .<br>
-If anyone wants to contribute to the project then first make an [Issues](https://github.com/yeazin/Multi-Authors-advanced-Django-Blog/issues) here.<br>
+If anyone wants to contribute to the project then first make an [Issues](https://github.com/yeazin/Movement-Pass-Clone/issues) here.<br>
 For further information anyone can knock me at __Email__ & __Facebook__ which is given in the [Owner Info](#repository-owner-info). <br>
 Thanks !!!<br>
+### Disclaimer
+This project is made only for educational perpose. Anyone can use it but the risk has to be taken by the user.
+for any inquery please contact me. 
+
 ### Repository Owner Info 
 
 __Md. Nazrul Islam Yeasin__ <br>
