@@ -43,18 +43,23 @@ This clone project has been made for learning perpose.Project has Three Differen
 
 __Each User__ has their own Dashboard.Below I will discuss further .
 #### __Custom Admin__ Features : -
+![original](readme/admin-area.png)
 __User has custom made admin template . with this admin area__
-* View all Movement Pass
+* __View all Movement Pass__ 
 ![original](readme/all-pass.png)
-* View all Approve Movement Pass
+* __View all Approve Movement Pass__
 ![original](readme/approve.png)
-* View all Pending Movement Pass
+* __View all Pending Movement Pass__
 ![original](readme/pending.png)
-* View all Expired Movement Pass
+* __View all Expired Movement Pass__
 ![original](readme/expire.png)
-* View all Users
+* __View all Users__
 ![original](readme/all-users.png)
+* __Can make Search in admin area__
+![original](readme/search.png)
+![original](readme/search-out.png)
 * Can Delete Movement Pass
+
 
 
 
