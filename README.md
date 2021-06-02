@@ -35,6 +35,32 @@
     * For Linux/Mac <code>python3 manage.py runserver</code>
 
 ### Project Details & Features with Images
+This clone project has been made for learning perpose.Project has Three Different Types of Users <br>
+
+* Custom made __Admin__ 
+* Normal __Users__    &
+* Default __SuperUser__ of Django (Built In Provided)
+
+__Each User__ has their own Dashboard.Below I will discuss further .
+#### __Custom Admin__ Features : -
+__User has custom made admin template . with this admin area__
+* View all Movement Pass
+![original](readme/all-pass.png)
+* View all Approve Movement Pass
+![original](readme/approve.png)
+* View all Pending Movement Pass
+![original](readme/pending.png)
+* View all Expired Movement Pass
+![original](readme/expire.png)
+* View all Users
+![original](readme/all-users.png)
+* Can Delete Movement Pass
+
+
+
+
+
+ 
 
 
 ### Issues & Questions
