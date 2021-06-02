@@ -1,1 +1,51 @@
 {% extends 'sadmin/base/base.html' %}
+{% block title %}q : {{ search }} | Movement Pass BD{% endblock %}
+{% block body %}
+
+{% if pass %}
+<div class="row">
+    {% for p in pass %}
+    <div class="col-6 mb-4" style="">
+        <div class="card shadow"  style="padding: 15px;">
+        <table >
+            <tr>
+                <td> ID </td>
+                <td> : </td>
+                <td>{{ p.id }}</td>
+            </tr>
+            <tr>
+                <td> Name </td>
+                <td> : </td>
+                <td> {{ p.user.name }}</td>
+            </tr>
+            <tr>
+                <td>From : {{ p.from_m }}</td>
+                <td> | </td>
+                <td> To : {{ p.to_m }}</td>
+            </tr>
+            <tr>
+                <td> Time Spending</td>
+                <td> : </td>
+                <td> {{ p.time_spand }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'single_pass' p.id %}" class="btn btn-sm bg-gray-300"> View <i class="fa fa-eye"></i></a>        
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="col-lg-10 " style="margin:0 auto;">
+ <h3>Your search - <b>{{ search }}</b> - did not match any of the documents.</h3> 
+
+<h5> Suggestions: </h5>
+<ul>
+<li>  Make sure that all words are spelled correctly.</li>
+<li>  Try different keywords.</li>
+<li>  Try more general keywords.</li>
+<li>  Try fewer keywords.</li>
+</ul>
+
+</div>
+{% endif %}
+{% endblock %}

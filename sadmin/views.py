@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
 from django.contrib import messages
+from django.db.models import Q
 
 
 class Dashboard(View):
@@ -286,3 +287,34 @@ class DeleteTime(View):
         time_get.delete()
         messages.warning(request,'Time Hour has been deleted')
         return redirect('time')
+
+# Search Function 
+class SearchAdmin(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request):
+        search = request.GET['q']
+        pass_obj = MovementPass.objects.all()
+        if len(search) > 100:
+            pass_obj_check = pass_obj.none()
+        else:
+            pass_obj_check = pass_obj.filter(
+                Q(user__name__icontains= search) |
+                Q(id__icontains= search)|
+                Q(from_m__icontains=search)|
+                Q(to_m__icontains=search)|
+                Q(district__name__icontains=search)|
+                Q(sub_dristrict__icontains=search)|
+                Q(time_spand__time__icontains=search)|
+                Q(move__name__icontains=search)|
+                Q(date__icontains=search)|
+                Q(reason__reason__icontains=search)
+            )
+        context ={
+            'search':search,
+            'pass':pass_obj_check
+        }
+        return render(request,'sadmin/home/search.html', context)
+

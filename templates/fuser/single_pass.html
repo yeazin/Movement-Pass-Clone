@@ -63,8 +63,8 @@
                                 <b><span class="text-muted">NAME:</span> {{obj.user.name}}</b>
                                 <br>
                                 
-                                <span class="text-muted">AGE: </span>          23
-                                Years                                <br>
+                                <span class="text-muted">Date of Birth : </span>  {{ obj.user.date_of_birth }}
+                                                             <br>
                                 <span class="text-muted">ID NUMBER:</span> {{obj.user.id_number }}
                                 <br>
                                 <span class="text-muted">MOBILE NO:</span> {{ obj.user.user.username }}
@@ -101,7 +101,7 @@
                             <th colspan="4"><span class="text-muted">Date and Time</span> <br> <b> {{ obj.date }}</b> - <b>02/05/2021 9:00 am</b></th>
                         </tr>
                         <tr>
-                        <th  colspan="4:" rowspan="2">{{ obj.from_m }}<br/>to<br/>{{ obj.to_m }}<br/>{% if obj.move == 'Only Go' %}(Round Trip){% else %} ( only Go ){% endif %}</th>
+                        <th  colspan="4:" rowspan="2">{{ obj.from_m }}<br/>to<br/>{{ obj.to_m }}<br/>{% if obj.move == 'Only Go' %}(One Way){% else %} ( Round Trip ){% endif %}</th>
                                                     </tr>
                         <tr>
                         </tr>

@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('dasboard',views.Dashboard.as_view(), name='dashboard'),
+    path('movement-pass/all/search/query/',views.SearchAdmin.as_view(), name='search'),
 
     path('all/movement-pass/', views.AllPassView.as_view(), name='allpass'),
     path('view/movement-pass/<str:id>/', views.SinglePass.as_view(), name='single_pass'),
