@@ -4,9 +4,12 @@
   
 #### Orginal Website : - [Movement Pass Bangladesh](https://movementpass.police.gov.bd/)
 ### Technology Used : -
-1. Python Web Framework Django as Backend
-2. HTML, CSS & Framework BootsTrap  
-3. JS
+1. [Django](https://www.djangoproject.com/). A is a high-level Web framework that encourages rapid development and clean, pragmatic design.( Used as Backend )
+2. [Datatables ](https://datatables.net/). An advanced Interaction controls to HTML Tables in Free and Easy way. 
+3. HTML, CSS
+4. JS
+
+### 
 
 ### Issues & Questions
 This project is scaleble.Anyone can contribute here.Anyone can use it as it is Under __MIT License__ .<br>
