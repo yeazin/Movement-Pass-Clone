@@ -2,7 +2,7 @@
 #### Navigation : [Built with](#technology-used---)--[Setup Local](#how-to-setup-in-windowsmaclinux)--[Project Features](#project-features---)--[Project Images](#project-images)--[Issues](#issues--questions)--[Disclaimer](#)--[Ower Info ](#repository-owner-info) 
 
 #### Orginal Website : - [Movement Pass Bangladesh](https://movementpass.police.gov.bd/)
-![original](media/readme/original.png)
+![original](readme/original.png)
 ### Technologies Built with  : -
 1. [Django](https://www.djangoproject.com/). A is a high-level Web framework that encourages rapid development and clean, pragmatic design.( Used as Backend )
 2. [Datatables ](https://datatables.net/). An advanced Interaction controls to HTML Tables in Free and Easy way. 
