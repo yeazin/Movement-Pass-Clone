@@ -22,7 +22,7 @@
 3. Create a Virtual Environment :-
     * for Windows <code>python -m venv env </code>
     * for Linux/Mac <code>python3 -m venv env </code>
-4. Activate Virtual Environment <code>source env/bin/activate </code>
+4. Activate Virtual Environment <code> .\env\Scripts\activate </code>
 5. Install Requirment Packages <code>pip install -r requirements.txt</code>
 6. Migrate Database :-
     * For Windows <code>py manage.py migrate</code>
