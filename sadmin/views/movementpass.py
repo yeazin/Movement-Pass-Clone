@@ -15,6 +15,32 @@ from django.db.models import Count
 from django.contrib import messages
 from django.db.models import Q
 
+# All Pass view
+class AllPassView(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request):
+        pass_obj = MovementPass.objects.all()
+        context={
+            'pass':pass_obj
+        }
+        return render (request,'sadmin/pass/all_pass.html',context)
+
+
+# single View of Movement Pass
+class SinglePass(View):
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    
+    def get(self,request,id):
+        pass_obj = get_object_or_404(MovementPass,id=id)
+        context= {
+            'obj':pass_obj
+        }
+        return render(request,'sadmin/pass/pass_single.html',context)
 
 # Approved pass Views
 class ViewApprovedPass(View):

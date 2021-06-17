@@ -1,11 +1,13 @@
 from django.urls import path
 # views import 
-from .views1.dashboard import Dashboard,SearchAdmin
-from .views1.conditions import ViewApprovedPass, ViewDisapprovedPass, ViewExpiredPass
-from .views1.pass import AllPassView,SinglePass
-from .views1.district import
-from .views1.time import 
-from .views1.reasons import 
+from .views.dashboard import Dashboard,SearchAdmin
+from .views.conditions import MakeApprove,MakeDisapprove,\
+                                MakeExpire,DeletePass
+from .views.users import AllUsers, SingleUser 
+from .views.movementpass import AllPassView,SinglePass,ViewApprovedPass,ViewDisapprovedPass,ViewExpiredPass
+from .views.district import DeleteDistrict, DistrictView
+from .views.time import TimeSpendsView,DeleteTime
+from .views.reasons import MovementReason, DeleteMovementReasonView, MovementReasonView
 
 urlpatterns = [
     path('dasboard',Dashboard.as_view(), name='dashboard'),
@@ -26,7 +28,7 @@ urlpatterns = [
     path('movement-pass/<str:id>/expired/',MakeExpire.as_view(), name='expired'),
     path('movement-pass/<str:id>/Delete/', DeletePass.as_view(), name='deleted'),
 
-    path('movement-pass/view/movement-reasons/',MovementReasonView.as_view(), name='reason'),
+    path('movement-pass/view/movement-reasons/',MovementReasonView.as_view() ,name='reason'),
     path('movement-pass/view/movement-reasons/delete/<str:id>/', DeleteMovementReasonView.as_view(), name='delete_reason'),
 
     path('movement-pass/view/district/', DistrictView.as_view(), name='district'),

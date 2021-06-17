@@ -15,29 +15,34 @@ from django.db.models import Count
 from django.contrib import messages
 from django.db.models import Q
 
-# All Pass view
-class AllPassView(View):
+# District Views
+class DistrictView(View):
     @method_decorator(login_required(login_url='login'))
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
-    
+
     def get(self,request):
-        pass_obj = MovementPass.objects.all()
-        context={
-            'pass':pass_obj
+        district_obj = District.objects.all().order_by('name')
+        context ={
+            'district':district_obj
         }
-        return render (request,'sadmin/pass/all_pass.html',context)
+        return render(request,'sadmin/district/district.html',context)
+    
+    def post(self,request):
+        distict_obj = request.POST.get('district')
+        district = District(name=distict_obj)
+        district.save(distict_obj)
+        messages.success(request,'District Has Been Added')
+        return redirect('district')
 
-
-# single View of Movement Pass
-class SinglePass(View):
+# Delete District 
+class DeleteDistrict(View):
     @method_decorator(login_required(login_url='login'))
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
     
-    def get(self,request,id):
-        pass_obj = get_object_or_404(MovementPass,id=id)
-        context= {
-            'obj':pass_obj
-        }
-        return render(request,'sadmin/pass/pass_single.html',context)
+    def post(self, request,id):
+        district_obj = get_object_or_404(District, id=id)
+        district_obj.delete()
+        messages.warning(request,'The District has been deleted')
+        return redirect('district')
