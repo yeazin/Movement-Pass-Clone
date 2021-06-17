@@ -1,32 +1,37 @@
-from fuser.models import MovementReason
 from django.urls import path
-from . import views
+# views import 
+from .views1.dashboard import Dashboard,SearchAdmin
+from .views1.conditions import ViewApprovedPass, ViewDisapprovedPass, ViewExpiredPass
+from .views1.pass import AllPassView,SinglePass
+from .views1.district import
+from .views1.time import 
+from .views1.reasons import 
 
 urlpatterns = [
-    path('dasboard',views.Dashboard.as_view(), name='dashboard'),
-    path('movement-pass/all/search/query/',views.SearchAdmin.as_view(), name='search'),
+    path('dasboard',Dashboard.as_view(), name='dashboard'),
+    path('movement-pass/all/search/query/',SearchAdmin.as_view(), name='search'),
 
-    path('all/movement-pass/', views.AllPassView.as_view(), name='allpass'),
-    path('view/movement-pass/<str:id>/', views.SinglePass.as_view(), name='single_pass'),
+    path('all/movement-pass/',AllPassView.as_view(), name='allpass'),
+    path('view/movement-pass/<str:id>/', SinglePass.as_view(), name='single_pass'),
 
-    path('movement-pass/view/all/approved',views.ViewApprovedPass.as_view(),name='approved_pass'),
-    path('movement-pass/view/all/disapproved',views.ViewDisapprovedPass.as_view(),name='disapproved_pass'),
-    path('movement-pass/view/all/expired',views.ViewExpiredPass.as_view(),name='expired_pass'),
+    path('movement-pass/view/all/approved',ViewApprovedPass.as_view(),name='approved_pass'),
+    path('movement-pass/view/all/disapproved',ViewDisapprovedPass.as_view(),name='disapproved_pass'),
+    path('movement-pass/view/all/expired',ViewExpiredPass.as_view(),name='expired_pass'),
 
-    path('view/all-users/movementpass/', views.AllUsers.as_view(),name='all_users'),
-    path('movement-pass/view/user/<str:id>',views.SingleUser.as_view(), name='single_user'),
+    path('view/all-users/movementpass/', AllUsers.as_view(),name='all_users'),
+    path('movement-pass/view/user/<str:id>',SingleUser.as_view(), name='single_user'),
     
-    path('movement-pass/<str:id>/approved/', views.MakeApprove.as_view(), name='approved'),
-    path('movement-pass/<str:id>/disapproved/',views.MakeDisapprove.as_view(), name='disapproved'),
-    path('movement-pass/<str:id>/expired/',views.MakeExpire.as_view(), name='expired'),
-    path('movement-pass/<str:id>/Delete/', views.DeletePass.as_view(), name='deleted'),
+    path('movement-pass/<str:id>/approved/', MakeApprove.as_view(), name='approved'),
+    path('movement-pass/<str:id>/disapproved/',MakeDisapprove.as_view(), name='disapproved'),
+    path('movement-pass/<str:id>/expired/',MakeExpire.as_view(), name='expired'),
+    path('movement-pass/<str:id>/Delete/', DeletePass.as_view(), name='deleted'),
 
-    path('movement-pass/view/movement-reasons/',views.MovementReasonView.as_view(), name='reason'),
-    path('movement-pass/view/movement-reasons/delete/<str:id>/', views.DeleteMovementReasonView.as_view(), name='delete_reason'),
+    path('movement-pass/view/movement-reasons/',MovementReasonView.as_view(), name='reason'),
+    path('movement-pass/view/movement-reasons/delete/<str:id>/', DeleteMovementReasonView.as_view(), name='delete_reason'),
 
-    path('movement-pass/view/district/', views.DistrictView.as_view(), name='district'),
-    path('movement-pass/delete/district/<str:id>',views.DeleteDistrict.as_view(),name='delete_district'),
+    path('movement-pass/view/district/', DistrictView.as_view(), name='district'),
+    path('movement-pass/delete/district/<str:id>',DeleteDistrict.as_view(),name='delete_district'),
 
-    path('movement-pass/view/time-hours/', views.TimeSpendsView.as_view(), name='time'),
-    path('movement-pass/delete/time-hours/<str:id>', views.DeleteTime.as_view(), name='delete_time'),
+    path('movement-pass/view/time-hours/', TimeSpendsView.as_view(), name='time'),
+    path('movement-pass/delete/time-hours/<str:id>', DeleteTime.as_view(), name='delete_time'),
 ]
