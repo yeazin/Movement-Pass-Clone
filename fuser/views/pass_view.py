@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 # models import 
-from .models import MovementReason,MovementPass, TimeSpend,\
+from fuser.models import MovementReason,MovementPass, TimeSpend,\
     MoveType
 from sadmin.models import IDtype, Gender, PassUser,District
 # essential imports
@@ -13,9 +13,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 # forms import 
-from .forms import PassApplyForm
-
-
+from fuser.forms import PassApplyForm
 
 
 # Dashboard for Movement Pass
@@ -74,10 +72,4 @@ class ViewPass(View):
             'obj':obj
         }
         return render(request,'fuser/single_pass.html',context)
-
-
-
-
-
-
 
