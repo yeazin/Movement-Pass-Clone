@@ -116,8 +116,9 @@ for any inquery please contact me.
 __Md. Nazrul Islam Yeasin__ <br>
 __Email :__ [ naz.yeasin@gmail.com ](mailto:naz.yeasin@gmail.com) <br>
 __Github :__ [yeazin](https://github.com/yeazin)<br>
-__FaceBook :__ [Yea Sin](https://facebook.com/yeariha.farsin) <br>
-__Linkedin :__ [Yea Sin](https://www.linkedin.com/in/yeazin/)
+__FaceBook :__ [Yea Sin](https://facebook.com/yeazin.io) <br>
+__Linkedin :__ [Yea Sin](https://www.linkedin.com/in/yeazin/) <br>
+__Twitter :__ [Yeazin](https://twitter.com/_yeazin)
 <br>
 <br>
 
